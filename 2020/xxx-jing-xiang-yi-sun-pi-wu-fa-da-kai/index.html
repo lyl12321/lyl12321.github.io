@@ -4,9 +4,9 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="macOS 开启TRIM支持, lqwq">
-    <meta name="description" content="什么是TIRM?
-原本在机械硬盘上，在删除数据时，系统只会在逻辑地址表的这个位置做个标记，说明这里应该是没有东西了，以后新的数据可以放在这个逻辑位置上。系统并不会发送任何请求给硬盘，因为下次在这个逻辑位置写入新数据时，系统可以直接找到磁盘上">
+    <meta name="keywords" content="xxx镜像已损坏,无法打开, lqwq">
+    <meta name="description" content="解决Mac镜像已损坏不能运行问题摘要在MacOS运行一些破解软件的时候问题可能会出现xxx已损坏，无法打开。您应该将它移到废纸篓。
+出现提示的原因是，苹果系统有一个GateKeeper保护机制（自 OSX 10.5 加入）。从互联网上下载来">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>macOS 开启TRIM支持 | lqwq</title>
+    <title>xxx镜像已损坏,无法打开 | lqwq</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -197,12 +197,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">macOS 开启TRIM支持</h1>
+                    <h1 class="description center-align post-title">xxx镜像已损坏,无法打开</h1>
                 </div>
             </div>
         </div>
@@ -348,28 +348,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-02-01
+                    2020-02-26
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2019-02-02
+                    2020-02-26
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    596
+                    348
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    1 分
                 </div>
                 
 
@@ -385,22 +385,14 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="什么是TIRM"><a href="#什么是TIRM" class="headerlink" title="什么是TIRM?"></a>什么是TIRM?</h2><blockquote>
-<p>原本在机械硬盘上，在删除数据时，系统只会在逻辑地址表的这个位置做个标记，说明这里应该是没有东西了，以后新的数据可以放在这个逻辑位置上。系统并不会发送任何请求给硬盘，因为下次在这个逻辑位置写入新数据时，系统可以直接找到磁盘上对应的物理位置，将硬盘上该处的无用数据覆盖，因此才有数据恢复的可能。所以对于硬盘的物理内容，在删除文件时其实并没有发生任何变化。</p>
-</blockquote>
-<blockquote>
-<p>对于固态硬盘（SSD），由于闪存的固有特性，更新页之前必须要擦除相关块。如果不开启TRIM，在文件系统中早已被删除的块在物理上还存放着原来的数据，且SSD主控无法知道这个块已经无用，直到有新的数据要求写入该块。物理上存放已无用的数据会在SSD垃圾回收（GC）的过程中被当成有用数据对待，被这对于固态硬盘的寿命是非常不利的，同时会导致其工作效率和性能的降低。</p>
-</blockquote>
-<blockquote>
-<p>而当操作系统识别到SSD并确认SSD支持TRIM后，在删除数据时，向SSD发出TRIM指令，通知SSD主控对应的页面已经无效，SSD启动GC（垃圾回收）机制时，就可以及时释放这些页面。未来有数据需要写入的时候，直接就可以写入了。</p>
-</blockquote>
-<blockquote>
-<p>所以说，TRIM只是避免SSD在垃圾回收时将无用数据当成有用数据来搬运，从而延长了SSD的寿命。以上就是Trim的原理以及真正作用。”</p>
-</blockquote>
-<h2 id="如何开启？"><a href="#如何开启？" class="headerlink" title="如何开启？"></a>如何开启？</h2><p>如果你更换了第三方固态才需要开启，因为苹果自家的会默认开启</p>
-<p>打开Terminal，输入<code>sudo trimforce enable</code>,即可开启TRIM功能</p>
-<p>查看开启结果:<code>关于本机</code>-&gt;<code>系统报告</code>-&gt;<code>NVMEExpress</code>/<code>SATA/SATA Express</code>(如果你是NVME协议就在前一个选项内看，SATA就在后一个)</p>
-<p><img src="https://raw.githubusercontent.com/lyl12321/picture/master/macOS/enable_TRIM1.png" alt="开启TRIM后"></p>
+                <h1 id="解决Mac镜像已损坏不能运行问题"><a href="#解决Mac镜像已损坏不能运行问题" class="headerlink" title="解决Mac镜像已损坏不能运行问题"></a>解决Mac镜像已损坏不能运行问题</h1><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>在MacOS运行一些破解软件的时候问题可能会出现<code>xxx已损坏，无法打开。您应该将它移到废纸篓</code>。</p>
+<p>出现提示的原因是，苹果系统有一个GateKeeper保护机制（自 OSX 10.5 加入）。从互联网上下载来的文件，会被自动打上com.apple.quarantine标志，翻译过来就是免疫隔离，系统根据这个附加属性对这个文件作出限制。</p>
+<p>所以我们只要移除这个附加属性就能重新打开软件</p>
+<p><img src="https://raw.githubusercontent.com/lyl12321/picture/master/QQ20200226-141201%402x.png" alt=""></p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>查阅了一些资料后发现网上很多的教程都是用重新签名的方法来修复，我个人感觉这种方法不是特别的好用，我们可以用 <code>xattr</code> 命令来达到我们的目的。</p>
+<p>打开iTerm2,键入 <code>sudo xattr -d com.apple.quarantine /Applications/xxx</code> xxx为程序名，以.app结尾。然后输入自己的管理员密码。然后再次打开刚刚损坏的程序。可以发现刚刚打不开的程序又能打开了。</p>
+<p><img src="https://raw.githubusercontent.com/lyl12321/picture/master/QQ20200226-144524%402x.png" alt=""></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://superuser.com/questions/28384/what-should-i-do-about-com-apple-quarantine" target="_blank" rel="noopener">https://superuser.com/questions/28384/what-should-i-do-about-com-apple-quarantine</a></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -444,7 +436,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://lyl12321.github.io/2019/macos-kai-qi-trim-zhi-chi/">https://lyl12321.github.io/2019/macos-kai-qi-trim-zhi-chi/</a>
+                    <a href="https://lyl12321.github.io/2020/xxx-jing-xiang-yi-sun-pi-wu-fa-da-kai/">https://lyl12321.github.io/2020/xxx-jing-xiang-yi-sun-pi-wu-fa-da-kai/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -918,84 +910,28 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/an-ji-dian-zai-xiao-wai-cha-cheng-ji/">
+                <a href="/2020/xxx-jing-xiang-yi-sun-pi-wu-fa-da-kai/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="安机电在校外查成绩">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="xxx镜像已损坏,无法打开">
                         
-                        <span class="card-title">安机电在校外查成绩</span>
+                        <span class="card-title">xxx镜像已损坏,无法打开</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            （学校的虚拟专用网络好像出了些问题，此方法暂时无法使用）教程准备:一台能联网的电脑或者手机、一双爪子、一个脑子就直接就进入主题啦
-电脑教程
-访问 https://218.22.71.210:4433 [电信用户] 或 https://111
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-02-02
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/校园生活/" class="post-category">
-                                    校园生活
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/网络技巧/">
-                        <span class="chip bg-color">网络技巧</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2019/macos-yun-xu-ren-he-lai-yuan-xuan-xiang/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="macOS 允许任何来源选项">
-                        
-                        <span class="card-title">macOS 允许任何来源选项</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            macOS Sierra之后苹果默认隐藏了允许任何来源的选项
-解决方法
-打开终端，键入命令，输入密码，然后回车sudo spctl --master-disable
-然后打开“安全性与隐私”，开启“任何来源”选项
-
-
-
-        do
+                            解决Mac镜像已损坏不能运行问题摘要在MacOS运行一些破解软件的时候问题可能会出现xxx已损坏，无法打开。您应该将它移到废纸篓。
+出现提示的原因是，苹果系统有一个GateKeeper保护机制（自 OSX 10.5 加入）。从互联网上下载来
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-02-01
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-26
                             </span>
                         <span class="publish-author">
                             
@@ -1009,6 +945,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1018,6 +955,55 @@
                     
                     <a href="/tags/Terminal/">
                         <span class="chip bg-color">Terminal</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/shi-yong-jiao-yu-you-xiang-mian-fei-huo-de-jetbrains-jia-de-chan-pin/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="使用教育邮箱免费获得jetbrains家的产品">
+                        
+                        <span class="card-title">使用教育邮箱免费获得jetbrains家的产品</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            前言在我们学习各种编程语言的过程中,我们会用到各种IDE,比如WebStorm,PhpStorm等等,他们都是不免费的.JetBrains非常友好的给我们提供了教育激活.JetBrains是一家捷克的软件开发公司，该公司位于捷克的布拉格，并
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-05-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/jetbrains激活/" class="post-category">
+                                    jetbrains激活
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/网络技巧/">
+                        <span class="chip bg-color">网络技巧</span>
                     </a>
                     
                 </div>
