@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Allow: /archives/
+Allow: /categories/
+Allow: /tags/
+Allow: /about/
+Sitemap: https://lyl12321.github.io/sitemap.xml
+Sitemap: http://sptwlt.coding-pages.com/baidu_sitemap.xml
