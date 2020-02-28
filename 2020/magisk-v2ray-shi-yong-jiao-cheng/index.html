@@ -5,9 +5,9 @@
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     <meta name="keywords" content="magisk v2ray 食用教程, lqwq">
-    <meta name="description" content="前言最近我在看magisk模块的时候，发现了一个比较好用的模块，那就是magisk版的v2ray工具。
+    <meta name="description" content="0x00前言最近我在看magisk模块的时候，发现了一个比较好用的模块，那就是magisk版的v2ray工具。
 作为模块，他可以一直在后台运行，而且非系统VPN模式。就是状态栏不会有啥图标。强迫症患者首选。
-这是他的项目地址Github项目，怎么下">
+这是他的项目地址Github项目">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -386,19 +386,19 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近我在看magisk模块的时候，发现了一个比较好用的模块，那就是magisk版的v2ray工具。</p>
+                <h2 id="0x00前言"><a href="#0x00前言" class="headerlink" title="0x00前言"></a>0x00前言</h2><p>最近我在看magisk模块的时候，发现了一个比较好用的模块，那就是magisk版的v2ray工具。</p>
 <p>作为模块，他可以一直在后台运行，而且非系统VPN模式。就是状态栏不会有啥图标。强迫症患者首选。</p>
 <p>这是他的项目地址<a href="https://github.com/Magisk-Modules-Repo/v2ray" target="_blank" rel="noopener">Github项目</a>，怎么下载，怎么安装这里就不复述了</p>
 <p>大神可以自己去看他的README，我这里分享一下我自己的过程，心得供大家参考。</p>
 <p>教程仅供学习与交流使用，请勿用于非法用途。</p>
-<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><p>安装完成后你的<code>/data/</code>目录下会生成一个<code>v2ray</code>的文件夹，这里存放着各种配置等文件。<br><img src="https://raw.githubusercontent.com/lyl12321/picture/master/Screenshot_2020.jpg" alt=""></p>
+<h2 id="0x01入门"><a href="#0x01入门" class="headerlink" title="0x01入门"></a>0x01入门</h2><p>安装完成后你的<code>/data/</code>目录下会生成一个<code>v2ray</code>的文件夹，这里存放着各种配置等文件。<br><img src="https://raw.githubusercontent.com/lyl12321/picture/master/Screenshot_2020.jpg" alt=""></p>
 <p>首先配置我们的<code>config.json</code>文件，此文件为<code>v2ray</code>的主要配置文件，里面有出站和入站规则等。</p>
 <p>使用编辑器打开<code>/data/v2ray/config.json</code>这个文件，我这里用的是es文件浏览器自带的编辑器，用其它也可以。</p>
 <p>然后将自己服务器配置<code>outbounds</code>部分的第一个元素复制到刚打开的文件的相同位置，点击保存。<br><img src="https://raw.githubusercontent.com/lyl12321/picture/master/QQ20200228-172704%402x.png" alt=""></p>
 <p>再打开<code>/data/v2ray/appid.list</code>这个文件，在文件内填入数字<code>0</code>。然后保存。解释一下：这个文件是用于分应用代理的，如果有这需求的友友们请查看本篇文章的进阶部分。<br><img src="https://raw.githubusercontent.com/lyl12321/picture/master/Screenshot_2020-02-28.jpg" alt=""></p>
 <p>然后回到<code>Magisk Manager</code>应用中，重启v2ray for android模块（就是禁用再打开，看下图）<br><img src="https://raw.githubusercontent.com/lyl12321/picture/master/IMG_20200228_185919.jpg" alt=""></p>
 <p>开始美妙的玩耍之路吧！！</p>
-<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><p>进阶配置稍微比入门的要难一些，但带来的好处也是显而易见的，例如分应用代理减少耗电，应用新的规则识别更准确。</p>
+<h2 id="0x02进阶"><a href="#0x02进阶" class="headerlink" title="0x02进阶"></a>0x02进阶</h2><p>进阶配置稍微比入门的要难一些，但带来的好处也是显而易见的，例如分应用代理减少耗电，应用新的规则识别更准确。</p>
 <p>此板块中简单的操作将不再赘述，有需要的可以看看前面的。</p>
 <h3 id="配置分应用代理"><a href="#配置分应用代理" class="headerlink" title="配置分应用代理"></a>配置分应用代理</h3><p>打开<code>/data/v2ray/appid.list</code>文件，分应用代理使用app的uid来区分每一个应用程序，文件的格式为：每个uid以 <strong>空格</strong> 或 <strong>换行</strong> 来分割。</p>
 <p>app的uid一般存在于<code>/data/system/packages.list</code>，您可以直接查看此文件来获取每个应用的uid。当然也有软件可以使用，例如<code>DevCheck</code>,<code>Solid Explorer</code>这些应用也可以进行查看。下方我以DevCheck为例。<br><img src="https://raw.githubusercontent.com/lyl12321/picture/master/Screenshot_2020-02-28-19-00-25.jpg" alt=""></p>
@@ -482,7 +482,7 @@
     ]
   }
 </code></pre><p>可以复制到自己的文件中，这样就实现了精准的分流。</p>
-<h2 id="高级"><a href="#高级" class="headerlink" title="高级"></a>高级</h2><p>在这个版块将不再赘述<strong>进阶</strong>中的操作步骤</p>
+<h2 id="0x03高级"><a href="#0x03高级" class="headerlink" title="0x03高级"></a>0x03高级</h2><p>在这个版块将不再赘述<strong>进阶</strong>中的操作步骤</p>
 <h3 id="通过WiFi热点来共享网络"><a href="#通过WiFi热点来共享网络" class="headerlink" title="通过WiFi热点来共享网络"></a>通过WiFi热点来共享网络</h3><p>共享自己的代理给wifi热点</p>
 <p>默认情况下是自动共享的，但有时候却不是那么尽人意。打开文件<code>/data/v2ray/softap.list</code>默认情况下会有<code>softap0</code>字样，这是WiFi热点接口名称。你可以通过<code>ip addr</code>来查看你的设备中热点接口的名称，并不是所以的设备都是<code>softap0</code>。你需要在此文件中写入自己的热点接口名称。<br><img src="https://raw.githubusercontent.com/lyl12321/picture/master/Screenshot_2020-02-28-19-02.jpg" alt=""></p>
 <h2 id="开发-amp-amp-未测试"><a href="#开发-amp-amp-未测试" class="headerlink" title="开发 &amp;&amp; 未测试"></a>开发 &amp;&amp; 未测试</h2><h3 id="进入手动模式"><a href="#进入手动模式" class="headerlink" title="进入手动模式"></a>进入手动模式</h3><p>如果要通过完全运行命令来控制V2Ray，只需添加一个文件/data/v2ray/manual。在这种情况下，V2Ray服务将不会在启动时自动启动，并且您无法通过Magisk Manager应用程序管理服务的启动/停止。</p>
@@ -540,7 +540,7 @@
       }
 </code></pre><p>反正我没测试过，如果有问题参考官方文档 <a href="v2ray.com">官方文档</a></p>
 <p>还有其它的玩法，请自行参考官方档。能玩得那么骚的，也不用来看我了。。。。</p>
-<h2 id="踩的坑"><a href="#踩的坑" class="headerlink" title="踩的坑"></a>踩的坑</h2><h3 id="Google服务无法使用，联不上网"><a href="#Google服务无法使用，联不上网" class="headerlink" title="Google服务无法使用，联不上网"></a>Google服务无法使用，联不上网</h3><p>一些是国行的手机，有些国行手机内置了google服务，但使用了这个模块后没法访问，原因是国行手机把google的地址指向了googleapis.cn。这个地址不可用。所以只要强制代理这个地址就好了。</p>
+<h2 id="0x04踩的坑"><a href="#0x04踩的坑" class="headerlink" title="0x04踩的坑"></a>0x04踩的坑</h2><h3 id="Google服务无法使用，联不上网"><a href="#Google服务无法使用，联不上网" class="headerlink" title="Google服务无法使用，联不上网"></a>Google服务无法使用，联不上网</h3><p>一些是国行的手机，有些国行手机内置了google服务，但使用了这个模块后没法访问，原因是国行手机把google的地址指向了googleapis.cn。这个地址不可用。所以只要强制代理这个地址就好了。</p>
 <p>在config.json的rules中加入</p>
 <pre><code>            {
                 "type": "field",
@@ -1082,9 +1082,9 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言最近我在看magisk模块的时候，发现了一个比较好用的模块，那就是magisk版的v2ray工具。
+                            0x00前言最近我在看magisk模块的时候，发现了一个比较好用的模块，那就是magisk版的v2ray工具。
 作为模块，他可以一直在后台运行，而且非系统VPN模式。就是状态栏不会有啥图标。强迫症患者首选。
-这是他的项目地址Github项目，怎么下
+这是他的项目地址Github项目
                         
                     </div>
                     <div class="publish-info">
