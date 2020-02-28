@@ -363,7 +363,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.5k
+                    1.7k
                 </div>
                 
 
@@ -540,6 +540,16 @@
       }
 </code></pre><p>反正我没测试过，如果有问题参考官方文档 <a href="v2ray.com">官方文档</a></p>
 <p>还有其它的玩法，请自行参考官方档。能玩得那么骚的，也不用来看我了。。。。</p>
+<h2 id="踩的坑"><a href="#踩的坑" class="headerlink" title="踩的坑"></a>踩的坑</h2><h3 id="Google服务无法使用，联不上网"><a href="#Google服务无法使用，联不上网" class="headerlink" title="Google服务无法使用，联不上网"></a>Google服务无法使用，联不上网</h3><p>一些是国行的手机，有些国行手机内置了google服务，但使用了这个模块后没法访问，原因是国行手机把google的地址指向了googleapis.cn。这个地址不可用。所以只要强制代理这个地址就好了。</p>
+<p>在config.json的rules中加入</p>
+<pre><code>            {
+                "type": "field",
+                "domain": [
+                    "domain:googleapis.cn"
+                ],
+                "outboundTag": "proxy"
+            }
+</code></pre><p>重启一下就好了</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
