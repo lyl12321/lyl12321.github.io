@@ -58,31 +58,6 @@
     
     
     <entry>
-      <title>使用教育邮箱免费获得jetbrains家的产品</title>
-      <link href="/2019/shi-yong-jiao-yu-you-xiang-mian-fei-huo-de-jetbrains-jia-de-chan-pin/"/>
-      <url>/2019/shi-yong-jiao-yu-you-xiang-mian-fei-huo-de-jetbrains-jia-de-chan-pin/</url>
-      
-        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在我们学习各种编程语言的过程中,我们会用到各种IDE,比如WebStorm,PhpStorm等等,他们都是不免费的.JetBrains非常友好的给我们提供了教育激活.<br>JetBrains是一家捷克的软件开发公司，该公司位于捷克的布拉格，并在俄罗斯的圣彼得堡及美国麻州波士顿都设有办公室，该公司最为人所熟知的产品是Java编程语言开发撰写时所用的集成开发环境：IntelliJ IDEA。官网地址:<a href="https://www.jetbrains.com/" target="_blank" rel="noopener">JetBrains官网</a><br><img src="https://s2.ax1x.com/2019/05/13/E4Hrkt.png" alt=""></p><h2 id="开始-图比较多-学校邮箱为-以机电为例-学号-stu-ahcme-edu-cn"><a href="#开始-图比较多-学校邮箱为-以机电为例-学号-stu-ahcme-edu-cn" class="headerlink" title="开始 (图比较多)(学校邮箱为:以机电为例   学号@stu.ahcme.edu.cn)"></a>开始 (图比较多)(学校邮箱为:以机电为例   学号@stu.ahcme.edu.cn)</h2><p>首先,我们打开JetBrains的学生免费授权计划  <a href="https://www.jetbrains.com/zh/student/" target="_blank" rel="noopener">学生免费授权计划</a><br><img src="https://s2.ax1x.com/2019/05/13/E4HaOH.png" alt=""><br>然后会出现<br><img src="https://s2.ax1x.com/2019/05/13/E4H00A.png" alt=""><br>确定后会出现<br><img src="https://s2.ax1x.com/2019/05/13/E4Hwmd.png" alt=""><br>然后进入到学校统一门户 <a href="http://my.ahcme.edu.cn/" target="_blank" rel="noopener">统一门户</a><br><img src="https://s2.ax1x.com/2019/05/13/E4HBTI.png" alt=""><br>点击进入邮箱<br><img src="https://s2.ax1x.com/2019/05/13/E4HstP.png" alt=""><br>输入新的邮箱密码,然后进入邮箱<br><img src="https://s2.ax1x.com/2019/05/13/E4Hcp8.png" alt=""><br>点击收件箱,会看到JetBrains发来的邮件<br><img src="https://s2.ax1x.com/2019/05/13/E4Hyff.png" alt=""><br>点击箭头指向的位置<br><img src="https://s2.ax1x.com/2019/05/13/E4H26g.png" alt=""><br>将页面滚动到底部,然后点击我同意 (注意:不滚动到底是不能点击我同意的)<br><img src="https://s2.ax1x.com/2019/05/13/E4HRXQ.png" alt=""><br>同意后会出现登录页面,输入学校邮箱和刚刚设置的密码<br><img src="https://s2.ax1x.com/2019/05/13/E4Hg1S.png" alt=""><br>JetBrains会在一段时间后给你发验证的邮件,点击箭头指向的位置<br><img src="https://s2.ax1x.com/2019/05/13/E4HIkq.png" alt=""><br>按图片的样子输入自己的信息,然后点击提交<br><img src="https://s2.ax1x.com/2019/05/13/E4Hfmj.png" alt=""><br>到这个界面注册就完成了<br><img src="https://s2.ax1x.com/2019/05/13/E4HThV.png" alt=""><br>打开自己的WebStorm<br><img src="https://s2.ax1x.com/2019/05/13/E4Hh0s.png" alt=""><br>找到图中的的选项<br><img src="https://s2.ax1x.com/2019/05/13/E4Hot0.png" alt=""><br>打开这个框之后输入自己的学校邮箱和第二次设置的密码,点击激活就完成了</p><h2 id="一些常见问题"><a href="#一些常见问题" class="headerlink" title="一些常见问题"></a>一些常见问题</h2><blockquote><h4 id="1-Q-第二封邮件收不到-A-第二封邮件会比较迟一些-可以尝试多刷新几遍邮箱"><a href="#1-Q-第二封邮件收不到-A-第二封邮件会比较迟一些-可以尝试多刷新几遍邮箱" class="headerlink" title="1. Q:第二封邮件收不到?  A:第二封邮件会比较迟一些,可以尝试多刷新几遍邮箱"></a>1. Q:第二封邮件收不到?  A:第二封邮件会比较迟一些,可以尝试多刷新几遍邮箱</h4><h4 id="2-Q-找不到最后的激活界面-A-可以在菜单栏找到Help-gt-Register"><a href="#2-Q-找不到最后的激活界面-A-可以在菜单栏找到Help-gt-Register" class="headerlink" title="2. Q:找不到最后的激活界面?  A:可以在菜单栏找到Help>Register"></a>2. Q:找不到最后的激活界面?  A:可以在菜单栏找到Help&gt;Register</h4><h4 id="3-Q-是永久激活的吗-A-不是-教育激活是有时间限制的-一般是一年-一年后可以重新申请"><a href="#3-Q-是永久激活的吗-A-不是-教育激活是有时间限制的-一般是一年-一年后可以重新申请" class="headerlink" title="3. Q:是永久激活的吗?  A:不是,教育激活是有时间限制的,一般是一年,一年后可以重新申请"></a>3. Q:是永久激活的吗?  A:不是,教育激活是有时间限制的,一般是一年,一年后可以重新申请</h4></blockquote><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这个方法可以激活的产品有很多,官网上有标注可以激活哪些,上面就是这次的教程了。</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
-      
-      
-      <categories>
-          
-          <category> jetbrains激活 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 网络技巧 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>机电修</title>
       <link href="/2019/ji-dian-xiu/"/>
       <url>/2019/ji-dian-xiu/</url>
