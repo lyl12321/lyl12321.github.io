@@ -58,31 +58,6 @@
     
     
     <entry>
-      <title>机电修</title>
-      <link href="/2019/ji-dian-xiu/"/>
-      <url>/2019/ji-dian-xiu/</url>
-      
-        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>同学们好！我们开发了一个 <code>App</code> 。<br>如果你有电脑方面的服务需求，我们将为你提供优质的服务！</p><h2 id="服务范围"><a href="#服务范围" class="headerlink" title="服务范围"></a>服务范围</h2><blockquote><p>例如:</p></blockquote><ul><li>电脑软硬件维修</li><li>服务器开发环境搭建与维护</li><li>手机软硬件维修 </li></ul><blockquote><p>我们都可以满足</p></blockquote><p>另有<code>专业软件</code>安装<strong>激活</strong>服务</p><blockquote><p>例如:</p></blockquote><ul><li>Windows 7/8.1/10 各版本正版激活</li><li>Office 2013/2016/2019 Pro Plus</li><li>Adobe 全套 (Photoshop Lightroom Illustrator…)</li><li>Visual Studio 2017 集成开发环境</li><li>VMware Fusion/Workstation 虚拟机软件</li><li>AutoCAD 专业设计软件等</li><li>· · · · · · </li></ul><p>大家可以通过  <code>App</code>  进行预约，也可以直接通过 <code>QQ</code> 联系我们。<br>我们的服务由大家共同见证！</p><p>PS: 我们是上门服务的！</p><h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址:"></a>下载地址:</h2><p>点击链接🔗直接下载：<br><a href="http://lqwqb.ml/release/com.Fixed.apk" target="_blank" rel="noopener">机电修:</a> <a href="http://lqwqb.ml/release/com.Fixed.apk" target="_blank" rel="noopener">http://lqwqb.ml/release/com.Fixed.apk</a><br>或者通过扫描二维码下载：</p><p><img src="https://raw.githubusercontent.com/cloverkits/hexo_picture_resource/master/picture/frame.png" alt="QR Code"></p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
-      
-      
-      <categories>
-          
-          <category> 机电修 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 机电修 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Windows 10 下访问校园网共享服务器</title>
       <link href="/2019/windows-10-xia-fang-wen-xiao-yuan-wang-gong-xiang-fu-wu-qi/"/>
       <url>/2019/windows-10-xia-fang-wen-xiao-yuan-wang-gong-xiang-fu-wu-qi/</url>
