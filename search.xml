@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>magisk v2ray 食用教程</title>
+      <link href="2020/magisk-v2ray-shi-yong-jiao-cheng/"/>
+      <url>2020/magisk-v2ray-shi-yong-jiao-cheng/</url>
+      
+        <content type="html"><![CDATA[<h2 id="0x00前言"><a href="#0x00前言" class="headerlink" title="0x00前言"></a>0x00前言</h2><p>最近我在看magisk模块的时候，发现了一个比较好用的模块，那就是magisk版的v2ray工具。</p><p>作为模块，他可以一直在后台运行，而且非系统VPN模式。就是状态栏不会有啥图标。强迫症患者首选。</p><p>这是他的项目地址<a href="https://github.com/Magisk-Modules-Repo/v2ray">Github项目</a>，怎么下载，怎么安装这里就不复述了</p><p>大神可以自己去看他的README，我这里分享一下我自己的过程，心得供大家参考。</p><p>教程仅供学习与交流使用，请勿用于非法用途。</p><h2 id="0x01入门"><a href="#0x01入门" class="headerlink" title="0x01入门"></a>0x01入门</h2><p>安装完成后你的<code>/data/</code>目录下会生成一个<code>v2ray</code>的文件夹，这里存放着各种配置等文件。<br><img src="https://raw.githubusercontent.com/lyl12321/picture/master/Screenshot_2020.webp"></p><p>首先配置我们的<code>config.json</code>文件，此文件为<code>v2ray</code>的主要配置文件，里面有出站和入站规则等。</p><p>使用编辑器打开<code>/data/v2ray/config.json</code>这个文件，我这里用的是es文件浏览器自带的编辑器，用其它也可以。</p><p>然后将自己服务器配置<code>outbounds</code>部分的第一个元素复制到刚打开的文件的相同位置，点击保存。<br><img src="https://raw.githubusercontent.com/lyl12321/picture/master/QQ20200228-172704%402x.webp"></p><p>再打开<code>/data/v2ray/appid.list</code>这个文件，在文件内填入数字<code>0</code>。然后保存。解释一下：这个文件是用于分应用代理的，如果有这需求的友友们请查看本篇文章的进阶部分。<br><img src="https://raw.githubusercontent.com/lyl12321/picture/master/Screenshot_2020-02-28.webp"></p><p>然后回到<code>Magisk Manager</code>应用中，重启v2ray for android模块（就是禁用再打开，看下图）<br><img src="https://raw.githubusercontent.com/lyl12321/picture/master/IMG_20200228_185919.webp"></p><p>开始美妙的玩耍之路吧！！</p><h2 id="0x02进阶"><a href="#0x02进阶" class="headerlink" title="0x02进阶"></a>0x02进阶</h2><p>进阶配置稍微比入门的要难一些，但带来的好处也是显而易见的，例如分应用代理减少耗电，应用新的规则识别更准确。</p><p>此板块中简单的操作将不再赘述，有需要的可以看看前面的。</p><h3 id="配置分应用代理"><a href="#配置分应用代理" class="headerlink" title="配置分应用代理"></a>配置分应用代理</h3><p>打开<code>/data/v2ray/appid.list</code>文件，分应用代理使用app的uid来区分每一个应用程序，文件的格式为：每个uid以 <strong>空格</strong> 或 <strong>换行</strong> 来分割。</p><p>app的uid一般存在于<code>/data/system/packages.list</code>，您可以直接查看此文件来获取每个应用的uid。当然也有软件可以使用，例如<code>DevCheck</code>,<code>Solid Explorer</code>这些应用也可以进行查看。下方我以DevCheck为例。<br><img src="https://raw.githubusercontent.com/lyl12321/picture/master/Screenshot_2020-02-28-19-00-25.webp"></p><p>当然我也写了一个方便配置app uid的应用，这个应用可以把包名直接转换成uid，包名可以直接从其它软件中直接导出。需要的在评论区留言一下，我会发出来<br><img src="https://raw.githubusercontent.com/lyl12321/picture/master/Screenshot1.webp"></p><h3 id="应用新路由规则"><a href="#应用新路由规则" class="headerlink" title="应用新路由规则"></a>应用新路由规则</h3><p>在<code>/data/v2ray/</code>目录下有geoip.dat和geosite.dat两个文件，这两文件中有一些规则，可以实现类似Gxx的功能，也就是可以指定哪些网站需要代理，哪些不需要。</p><p>首先我们需要去下载比较强大的规则集，这是他的项目地址<a href="https://github.com/Loyalsoldier/v2ray-rules-dat">Github项目</a></p><p>我们需要下载上方两个文件，下载地址直接放出来：<br><a href="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat">geoip.dat</a>       <a href="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat">geosite.dat</a></p><p>下载完成后直接覆盖<code>/data/v2ray/</code>目录里的原文件，然后打开<code>config.json</code>,下面我就直接贴代码了，怎么编辑你们也会的。</p><p>在<code>routing</code>部分下改写部分规则</p><pre><code>"routing": {    "domainStrategy": "IPIfNonMatch",    "rules": [      {        //代理dns请求        "type": "field",        "inboundTag": ["dns-in"],        "outboundTag": "dns-out"      },      {        //禁用bt下载        "type": "field",        "outboundTag": "direct",        "protocol": ["bittorrent"]      },      {        //屏蔽广告        "type": "field",        "outboundTag": "block",        "domain": [          "geosite:category-ads-all"        ]      },      {        //代理非大陆地址和speedtest        "type": "field",        "outboundTag": "proxy",        "domain": [          "geosite:geolocation-!cn",          "geosite:speedtest"        ]      },      {        //直接放行大陆地址        "type": "field",        "outboundTag": "direct",        "domain": [          "geosite:cn"        ]      },      {        //放行国内dns地址        "type": "field",        "outboundTag": "direct",        "ip": [          "223.5.5.5/32",          "119.29.29.29/32",          "180.76.76.76/32",          "114.114.114.114/32"        ]      },      {        //代理国内dns地址        "type": "field",        "outboundTag": "proxy",        "ip": [          "1.1.1.1/32",          "1.0.0.1/32",          "8.8.8.8/32",          "8.8.4.4/32"        ]      },      {        //放行国内ip和私有地址        "type": "field",        "outboundTag": "direct",        "ip": [          "geoip:cn",          "geoip:private"        ]      }    ]  }</code></pre><p>可以复制到自己的文件中，这样就实现了精准的分流。</p><h2 id="0x03高级"><a href="#0x03高级" class="headerlink" title="0x03高级"></a>0x03高级</h2><p>在这个版块将不再赘述<strong>进阶</strong>中的操作步骤</p><h3 id="通过WiFi热点来共享网络"><a href="#通过WiFi热点来共享网络" class="headerlink" title="通过WiFi热点来共享网络"></a>通过WiFi热点来共享网络</h3><p>共享自己的代理给wifi热点</p><p>默认情况下是自动共享的，但有时候却不是那么尽人意。打开文件<code>/data/v2ray/softap.list</code>默认情况下会有<code>softap0</code>字样，这是WiFi热点接口名称。你可以通过<code>ip addr</code>来查看你的设备中热点接口的名称，并不是所以的设备都是<code>softap0</code>。你需要在此文件中写入自己的热点接口名称。<br><img src="https://raw.githubusercontent.com/lyl12321/picture/master/Screenshot_2020-02-28-19-02.webp"></p><h2 id="开发-amp-amp-未测试"><a href="#开发-amp-amp-未测试" class="headerlink" title="开发 &amp;&amp; 未测试"></a>开发 &amp;&amp; 未测试</h2><h3 id="进入手动模式"><a href="#进入手动模式" class="headerlink" title="进入手动模式"></a>进入手动模式</h3><p>如果要通过完全运行命令来控制V2Ray，只需添加一个文件/data/v2ray/manual。在这种情况下，V2Ray服务将不会在启动时自动启动，并且您无法通过Magisk Manager应用程序管理服务的启动/停止。</p><p>管理服务启动/停止<br>V2Ray服务脚本是<code>$MODDIR/scripts/v2ray.service</code>。</p><p>启动服务：<br><code>/sbin/.magisk/img/v2ray/scripts/v2ray.service start</code></p><p>停止服务：<br><code>/sbin/.magisk/img/v2ray/scripts/v2ray.service stop</code></p><p>管理透明代理启用/禁用<br>透明的代理脚本是<code>$MODDIR/scripts/v2ray.tproxy</code>。</p><p>启用透明代理：<br><code>/sbin/.magisk/img/v2ray/scripts/v2ray.tproxy enable</code></p><p>禁用透明代理：<br><code>/sbin/.magisk/img/v2ray/scripts/v2ray.tproxy disable</code></p><h3 id="通过wifi来共享网络给局域网中的其它人-（未测试，请自测）"><a href="#通过wifi来共享网络给局域网中的其它人-（未测试，请自测）" class="headerlink" title="通过wifi来共享网络给局域网中的其它人 （未测试，请自测）"></a>通过wifi来共享网络给局域网中的其它人 （未测试，请自测）</h3><p>打开<code>config.json</code>文件在<code>inbounds</code>中添加</p><pre><code>{      //监听socks,端口为1080      "protocol": "socks",      "listen": "0.0.0.0",      "port": 1080,      "tag": "socks-in",      "settings": {        "ip": "127.0.0.1",        "udp": true,        "auth": "noauth"      },      "sniffing": {        "enabled": true,        "destOverride": ["http", "tls"]      }    },    {    //监听http,端口为1081      "protocol": "http",      "listen": "0.0.0.0",      "port": 1081,      "tag": "http-in",      "sniffing": {        "enabled": true,        "destOverride": ["http", "tls"]      }    }</code></pre><p>然后在<code>rules</code>中</p><pre><code>    {        //代理dns请求        "type": "field",        "inboundTag": ["dns-in"],        "outboundTag": "dns-out"      },</code></pre><p>修改为</p><pre><code>    {        "type": "field",        "outboundTag": "dns-out",        "inboundTag": [          "socks-in",          "http-in",          "dns-in"        ],        "network": "tcp,udp"      }</code></pre><p>反正我没测试过，如果有问题参考官方文档 <a href="v2ray.com">官方文档</a></p><p>还有其它的玩法，请自行参考官方档。能玩得那么骚的，也不用来看我了。。。。</p><h2 id="0x04踩的坑"><a href="#0x04踩的坑" class="headerlink" title="0x04踩的坑"></a>0x04踩的坑</h2><h3 id="Google服务无法使用，联不上网"><a href="#Google服务无法使用，联不上网" class="headerlink" title="Google服务无法使用，联不上网"></a>Google服务无法使用，联不上网</h3><p>一些是国行的手机，有些国行手机内置了google服务，但使用了这个模块后没法访问，原因是国行手机把google的地址指向了googleapis.cn。这个地址不可用。所以只要强制代理这个地址就好了。</p><p>在config.json的rules中加入</p><pre><code>            {                "type": "field",                "domain": [                    "domain:googleapis.cn"                ],                "outboundTag": "proxy"            }</code></pre><p>重启一下就好了</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 手机技巧 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 系统技巧 </tag>
+            
+            <tag> 网络技巧 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>xxx镜像已损坏,无法打开</title>
+      <link href="2020/xxx-jing-xiang-yi-sun-pi-wu-fa-da-kai/"/>
+      <url>2020/xxx-jing-xiang-yi-sun-pi-wu-fa-da-kai/</url>
+      
+        <content type="html"><![CDATA[<h1 id="解决Mac镜像已损坏不能运行问题"><a href="#解决Mac镜像已损坏不能运行问题" class="headerlink" title="解决Mac镜像已损坏不能运行问题"></a>解决Mac镜像已损坏不能运行问题</h1><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>在MacOS运行一些破解软件的时候问题可能会出现<code>xxx已损坏，无法打开。您应该将它移到废纸篓</code>。</p><p>出现提示的原因是，苹果系统有一个GateKeeper保护机制（自 OSX 10.5 加入）。从互联网上下载来的文件，会被自动打上com.apple.quarantine标志，翻译过来就是免疫隔离，系统根据这个附加属性对这个文件作出限制。</p><p>所以我们只要移除这个附加属性就能重新打开软件</p><p><img src="https://raw.githubusercontent.com/lyl12321/picture/master/QQ20200226-141201%402x.webp"></p><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>查阅了一些资料后发现网上很多的教程都是用重新签名的方法来修复，我个人感觉这种方法不是特别的好用，我们可以用 <code>xattr</code> 命令来达到我们的目的。</p><p>打开iTerm2,键入 <code>sudo xattr -d com.apple.quarantine /Applications/xxx</code> xxx为程序名，以.app结尾。然后输入自己的管理员密码。然后再次打开刚刚损坏的程序。可以发现刚刚打不开的程序又能打开了。</p><p><img src="https://raw.githubusercontent.com/lyl12321/picture/master/QQ20200226-144524%402x.webp"></p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://superuser.com/questions/28384/what-should-i-do-about-com-apple-quarantine">https://superuser.com/questions/28384/what-should-i-do-about-com-apple-quarantine</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> macOS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 系统技巧 </tag>
+            
+            <tag> Terminal </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Windows 10 下访问校园网共享服务器</title>
+      <link href="2019/windows-10-xia-fang-wen-xiao-yuan-wang-gong-xiang-fu-wu-qi/"/>
+      <url>2019/windows-10-xia-fang-wen-xiao-yuan-wang-gong-xiang-fu-wu-qi/</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在学校会经常会访问 <code>\\192.168.88.88</code> 这么一个 <code>IP</code> 地址</p><p>它是学校为了解决各终端设备之间的<code>文件共享</code>问题所搭建的内网 <code>SMB</code> 服务器</p><p>经过初步扫描发现学校的 <code>SMB</code> 有三务器进行负载均衡,每台各存储不同的资料内容</p><p><img src="https://raw.githubusercontent.com/cloverkits/hexo_picture_resource/master/picture/VLAN.png"></p><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>由于宿舍宽带接入通过学校的<code>网关</code>我们可以直接在<code>资源管理器</code>中直接访问 <code>SMB</code> 服务器</p><p>我猜想学校使用了 <code>VLAN</code> 技术把宿舍的宽带和内网以某种方式形成一个 <code>LAN</code> 局域网</p><p>然而在实际使用中却发生了问题，已知任何几台电脑都可以正常访问，但是在宿舍却打不开</p><blockquote><h4 id="分析"><a href="#分析" class="headerlink" title="分析:"></a>分析:</h4></blockquote><p>经过测试 <code>SMB</code> 在 <code>Windows 7</code> 系统中能够正常访问，而 <code>Windows 10</code> 或者 <code>macOS Mojave</code> 和 <code>Linux</code> 中均无法打开；而在 <code>macOS</code> 中能够使用命令扫描到内网有 <code>SMB</code> 开放端口和共享目录</p><p>后来通过 <code>Google</code> 发现了问题的关键，原因是学校的 <code>SMB</code> 文件服务器使用的协议版本太老了</p><blockquote><h4 id="解决："><a href="#解决：" class="headerlink" title="解决："></a>解决：</h4></blockquote><p>我们可以通过启用系统中的 <code>SMB</code> 旧版本支持来实现正常访问</p><ol><li>通过 Windows 搜索或者面板找到 <code>启用或关闭 Windows 功能</code></li></ol><p>![](<a href="https://raw.githubusercontent.com/cloverkits/hexo_picture_resource/master/picture/Windows">https://raw.githubusercontent.com/cloverkits/hexo_picture_resource/master/picture/Windows</a> Search.png)</p><ol start="2"><li><p>勾选 <code>SMB 1.0/CIFS File Sharing Support</code> 支持, 并按 <code>确定</code>键应用更改<br>![](<a href="https://raw.githubusercontent.com/cloverkits/hexo_picture_resource/master/picture/Enable">https://raw.githubusercontent.com/cloverkits/hexo_picture_resource/master/picture/Enable</a> Windows Feature.png)</p></li><li><p>重启电脑</p></li><li><p>在资源管理器访问 <code>\\192.168.88.88</code> 并输入你的 <code>校园统一门户</code> 账号密码完成登录</p></li></ol><p><img src="https://raw.githubusercontent.com/cloverkits/hexo_picture_resource/master/picture/VLAN_ID.PNG"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 校园生活 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 系统教程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>macOS 开启TRIM支持</title>
+      <link href="2019/macos-kai-qi-trim-zhi-chi/"/>
+      <url>2019/macos-kai-qi-trim-zhi-chi/</url>
+      
+        <content type="html"><![CDATA[<h2 id="什么是TIRM"><a href="#什么是TIRM" class="headerlink" title="什么是TIRM?"></a>什么是TIRM?</h2><blockquote><p>原本在机械硬盘上，在删除数据时，系统只会在逻辑地址表的这个位置做个标记，说明这里应该是没有东西了，以后新的数据可以放在这个逻辑位置上。系统并不会发送任何请求给硬盘，因为下次在这个逻辑位置写入新数据时，系统可以直接找到磁盘上对应的物理位置，将硬盘上该处的无用数据覆盖，因此才有数据恢复的可能。所以对于硬盘的物理内容，在删除文件时其实并没有发生任何变化。</p></blockquote><blockquote><p>对于固态硬盘（SSD），由于闪存的固有特性，更新页之前必须要擦除相关块。如果不开启TRIM，在文件系统中早已被删除的块在物理上还存放着原来的数据，且SSD主控无法知道这个块已经无用，直到有新的数据要求写入该块。物理上存放已无用的数据会在SSD垃圾回收（GC）的过程中被当成有用数据对待，被这对于固态硬盘的寿命是非常不利的，同时会导致其工作效率和性能的降低。</p></blockquote><blockquote><p>而当操作系统识别到SSD并确认SSD支持TRIM后，在删除数据时，向SSD发出TRIM指令，通知SSD主控对应的页面已经无效，SSD启动GC（垃圾回收）机制时，就可以及时释放这些页面。未来有数据需要写入的时候，直接就可以写入了。</p></blockquote><blockquote><p>所以说，TRIM只是避免SSD在垃圾回收时将无用数据当成有用数据来搬运，从而延长了SSD的寿命。以上就是Trim的原理以及真正作用。”</p></blockquote><h2 id="如何开启？"><a href="#如何开启？" class="headerlink" title="如何开启？"></a>如何开启？</h2><p>如果你更换了第三方固态才需要开启，因为苹果自家的会默认开启</p><p>打开Terminal，输入<code>sudo trimforce enable</code>,即可开启TRIM功能</p><p>查看开启结果:<code>关于本机</code>-&gt;<code>系统报告</code>-&gt;<code>NVMEExpress</code>/<code>SATA/SATA Express</code>(如果你是NVME协议就在前一个选项内看，SATA就在后一个)</p><p><img src="https://raw.githubusercontent.com/lyl12321/picture/master/enable_TRIM1.webp" alt="开启TRIM后"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> macOS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 系统技巧 </tag>
+            
+            <tag> Terminal </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>macOS 允许任何来源选项</title>
+      <link href="2019/macos-yun-xu-ren-he-lai-yuan-xuan-xiang/"/>
+      <url>2019/macos-yun-xu-ren-he-lai-yuan-xuan-xiang/</url>
+      
+        <content type="html"><![CDATA[<p><code>macOS Sierra</code>之后苹果默认隐藏了<code>允许任何来源</code>的选项</p><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><ol><li>打开终端，键入命令，输入密码，然后回车<br><code>sudo spctl --master-disable</code></li><li>然后打开“安全性与隐私”，开启“任何来源”选项</li></ol><p><img src="https://raw.githubusercontent.com/lyl12321/picture/master/enable_spctl.webp"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> macOS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 系统技巧 </tag>
+            
+            <tag> Terminal </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
