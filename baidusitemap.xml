@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://lyl12321.github.io/2020/ctf-chang-jian-rao-guo/</loc>
+    <lastmod>2021-03-30</lastmod>
+  </url>
+  <url>
+    <loc>https://lyl12321.github.io/2020/msfvenom-sheng-cheng/</loc>
+    <lastmod>2021-03-30</lastmod>
+  </url>
+  <url>
     <loc>https://lyl12321.github.io/2020/magisk-v2ray-shi-yong-jiao-cheng/</loc>
     <lastmod>2021-03-30</lastmod>
   </url>

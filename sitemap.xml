@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://lyl12321.github.io/2020/ctf-chang-jian-rao-guo/</loc>
+    
+    <lastmod>2021-03-30</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://lyl12321.github.io/2020/msfvenom-sheng-cheng/</loc>
+    
+    <lastmod>2021-03-30</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://lyl12321.github.io/2020/magisk-v2ray-shi-yong-jiao-cheng/</loc>
     
     <lastmod>2021-03-30</lastmod>
@@ -74,7 +88,7 @@
 
   
   <url>
-    <loc>https://lyl12321.github.io/tags/%E7%B3%BB%E7%BB%9F%E6%95%99%E7%A8%8B/</loc>
+    <loc>https://lyl12321.github.io/tags/%E7%BD%91%E7%BB%9C%E6%8A%80%E5%B7%A7/</loc>
     <lastmod>2021-03-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -95,7 +109,7 @@
   </url>
   
   <url>
-    <loc>https://lyl12321.github.io/tags/%E7%BD%91%E7%BB%9C%E6%8A%80%E5%B7%A7/</loc>
+    <loc>https://lyl12321.github.io/tags/%E7%B3%BB%E7%BB%9F%E6%95%99%E7%A8%8B/</loc>
     <lastmod>2021-03-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -104,7 +118,7 @@
 
   
   <url>
-    <loc>https://lyl12321.github.io/categories/%E6%A0%A1%E5%9B%AD%E7%94%9F%E6%B4%BB/</loc>
+    <loc>https://lyl12321.github.io/categories/CTF%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2021-03-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -112,6 +126,13 @@
   
   <url>
     <loc>https://lyl12321.github.io/categories/macOS/</loc>
+    <lastmod>2021-03-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://lyl12321.github.io/categories/%E6%A0%A1%E5%9B%AD%E7%94%9F%E6%B4%BB/</loc>
     <lastmod>2021-03-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
