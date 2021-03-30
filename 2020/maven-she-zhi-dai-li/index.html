@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="CTF常见绕过, Code Misc">
+    <meta name="keywords" content="maven设置代理, Code Misc">
     <meta name="description" content="代码和玩机杂谈">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -27,7 +27,7 @@
 </script>
 
 
-    <title>CTF常见绕过 | Code Misc</title>
+    <title>maven设置代理 | Code Misc</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -216,12 +216,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">CTF常见绕过</h1>
+                    <h1 class="description center-align post-title">maven设置代理</h1>
                 </div>
             </div>
         </div>
@@ -337,8 +337,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E7%BD%91%E7%BB%9C%E6%8A%80%E5%B7%A7/">
-                                <span class="chip bg-color">网络技巧</span>
+                            <a href="/tags/Code/">
+                                <span class="chip bg-color">Code</span>
                             </a>
                         
                     </div>
@@ -349,8 +349,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/CTF%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                CTF学习
+                            <a href="/categories/Java/" class="post-category">
+                                Java
                             </a>
                         
                     </div>
@@ -362,7 +362,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-19
+                    2020-06-20
                 </div>
                 
 
@@ -383,13 +383,31 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="指定ip访问绕过"><a href="#指定ip访问绕过" class="headerlink" title="指定ip访问绕过"></a>指定ip访问绕过</h2><p>在头中添加 X-Forwarded-For</p>
-<h2 id="php-filter读取任意-php文件"><a href="#php-filter读取任意-php文件" class="headerlink" title="php:filter读取任意.php文件"></a>php:filter读取任意.php文件</h2><p><code>php://filter/read=convert.base64-encode/resource=xx.php</code></p>
-<h2 id="实战常用后门"><a href="#实战常用后门" class="headerlink" title="实战常用后门"></a>实战常用后门</h2><p>使用后门扫描工具</p>
-<h2 id="php双"><a href="#php双" class="headerlink" title="php双$$"></a>php双$$</h2><p>表示可变变量 <a target="_blank" rel="noopener" href="https://blog.csdn.net/A757291228/article/details/57083568">https://blog.csdn.net/A757291228/article/details/57083568</a></p>
-<h2 id="md5绕过"><a href="#md5绕过" class="headerlink" title="md5绕过"></a>md5绕过</h2><p>== 双等于使用 0e方法绕过<br>=== 三等于使用传数组方法绕过<br>有两种方法绕过：<br>1，md5()函数无法处理数组，如果传入的为数组，会返回NULL，所以两个数组经过加密后得到的都是NULL,也就是相等的。<br>payload: ?kkeyey1[]=1&amp;kkeyey2[]=2<br>2，利用==比较漏洞<br>如果两个字符经MD5加密后的值为 0exxxxx形式，就会被认为是科学计数法，且表示的是0*10的xxxx次方，还是零，都是相等的。<br>下列的字符串的MD5值都是0e开头的：<br>QNKCDZO<br>240610708<br>s878926199a<br>s155964671a<br>s214587387a<br>s214587387a</p>
-<h2 id="修改HTTP头中的referer伪造访问来源"><a href="#修改HTTP头中的referer伪造访问来源" class="headerlink" title="修改HTTP头中的referer伪造访问来源"></a>修改HTTP头中的referer伪造访问来源</h2><p>HTTP Referer是header的一部分，当浏览器向web服务器发送请求的时候，一般会带上Referer，<br>告诉服务器我是从哪个页面链接过来的，服务器基此可以获得一些信息用于处理。</p>
-<h2 id="php常见漏洞总结"><a href="#php常见漏洞总结" class="headerlink" title="php常见漏洞总结"></a>php常见漏洞总结</h2><p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/3085">https://xz.aliyun.com/t/3085</a></p>
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>因为一些原因，Maven的下载速度非常的慢，所以要给Maven加个速。一共有两种方法，个人比较推荐第一种。</p>
+<h2 id="通过settings-xml设置"><a href="#通过settings-xml设置" class="headerlink" title="通过settings.xml设置"></a>通过settings.xml设置</h2><ol>
+<li>编辑/Users/你的用户名/.m2/settings.xml(如果没有这个文件的话，就新建一个)，windows路径：系统盘:/Users/你的用户名/.m2/settings.xml</li>
+<li>添加配置<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>settings</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>proxies</span><span class="token punctuation">></span></span>
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>proxy</span><span class="token punctuation">></span></span> 
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span><span class="token punctuation">></span></span>workProxy<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>id</span><span class="token punctuation">></span></span> 
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>active</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>active</span><span class="token punctuation">></span></span> 
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>protocol</span><span class="token punctuation">></span></span>http<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>protocol</span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>username</span><span class="token punctuation">></span></span>admin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>username</span><span class="token punctuation">></span></span>             
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>password</span><span class="token punctuation">></span></span>admin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>password</span><span class="token punctuation">></span></span> 
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span><span class="token punctuation">></span></span>172.17.13.12<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>port</span><span class="token punctuation">></span></span>8088<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>port</span><span class="token punctuation">></span></span>   
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nonProxyHosts</span><span class="token punctuation">></span></span>local.net|some.host.com<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nonProxyHosts</span><span class="token punctuation">></span></span>    
+     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>proxy</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>proxies</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>settings</span><span class="token punctuation">></span></span>
+</code></pre>
+id：可选，可以配置多个代理节点（proxy）<br>active：true/false，true的话说明该代理配置激活使用<br>protocol：http，代理的协议，这里就是http<br>username：用户名，代理需要账号校验时填写，否则注释掉或者直接删除<br>password：密码，代理需要账号校验时填写，否则注释掉或者直接删除<br>host：代理ip<br>port：代理端口<br>nonProxyHosts：无需经过代理访问的网站，多个的话通过|隔开</li>
+</ol>
+<h2 id="通过Idea设置"><a href="#通过Idea设置" class="headerlink" title="通过Idea设置"></a>通过Idea设置</h2><ol>
+<li>打开 <code>Preferences</code> &gt; <code>Build,Execution,Deployment</code> &gt; <code>Build Tools</code> &gt; <code>Maven</code> &gt; <code>Importing</code> &gt; <code>VM options for importer</code> 填入 <code>-DproxySet=true -DproxyHost=127.0.0.1 -DproxyPort=1081</code> 其中 <code>DproxyHost</code>为你的主机地址 <code>DproxyPort</code>为你的端口号</li>
+<li>打开 <code>Preferences</code> &gt; <code>Build,Execution,Deployment</code> &gt; <code>Build Tools</code> &gt; <code>Maven</code> &gt; <code>Runner</code> &gt; <code>VM Options</code> 填入 <code>-DproxySet=true -DproxyHost=127.0.0.1 -DproxyPort=1081</code> 其中 <code>DproxyHost</code>为你的主机地址 <code>DproxyPort</code>为你的端口号</li>
+</ol>
+<p>这个方法是 <code>For current project</code> 也就是只对当前项目生效，切换项目的话，需要重新配置。</p>
 
                 
             </div>
@@ -416,7 +434,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://lyl12321.github.io/2020/ctf-chang-jian-rao-guo/">https://lyl12321.github.io/2020/ctf-chang-jian-rao-guo/</a>
+                    <a href="https://lyl12321.github.io/2020/maven-she-zhi-dai-li/">https://lyl12321.github.io/2020/maven-she-zhi-dai-li/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -454,8 +472,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E7%BD%91%E7%BB%9C%E6%8A%80%E5%B7%A7/">
-                                    <span class="chip bg-color">网络技巧</span>
+                                <a href="/tags/Code/">
+                                    <span class="chip bg-color">Code</span>
                                 </a>
                             
                         </div>
@@ -893,9 +911,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/maven-she-zhi-dai-li/">
                     <div class="card-image">
@@ -913,9 +932,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-20
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -928,6 +947,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -946,13 +966,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/msfvenom-sheng-cheng/">
+                <a href="/2020/ctf-chang-jian-rao-guo/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="msfvenom生成">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="CTF常见绕过">
                         
-                        <span class="card-title">msfvenom生成</span>
+                        <span class="card-title">CTF常见绕过</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -963,7 +983,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-17
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-19
                             </span>
                         <span class="publish-author">
                             

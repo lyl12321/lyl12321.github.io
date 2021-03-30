@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>maven设置代理</title>
+      <link href="2020/maven-she-zhi-dai-li/"/>
+      <url>2020/maven-she-zhi-dai-li/</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>因为一些原因，Maven的下载速度非常的慢，所以要给Maven加个速。一共有两种方法，个人比较推荐第一种。</p><h2 id="通过settings-xml设置"><a href="#通过settings-xml设置" class="headerlink" title="通过settings.xml设置"></a>通过settings.xml设置</h2><ol><li>编辑/Users/你的用户名/.m2/settings.xml(如果没有这个文件的话，就新建一个)，windows路径：系统盘:/Users/你的用户名/.m2/settings.xml</li><li>添加配置<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>settings</span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>proxies</span><span class="token punctuation">></span></span>     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>proxy</span><span class="token punctuation">></span></span>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span><span class="token punctuation">></span></span>workProxy<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>id</span><span class="token punctuation">></span></span>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>active</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>active</span><span class="token punctuation">></span></span>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>protocol</span><span class="token punctuation">></span></span>http<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>protocol</span><span class="token punctuation">></span></span>       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>username</span><span class="token punctuation">></span></span>admin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>username</span><span class="token punctuation">></span></span>                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>password</span><span class="token punctuation">></span></span>admin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>password</span><span class="token punctuation">></span></span>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span><span class="token punctuation">></span></span>172.17.13.12<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">></span></span>       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>port</span><span class="token punctuation">></span></span>8088<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>port</span><span class="token punctuation">></span></span>          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nonProxyHosts</span><span class="token punctuation">></span></span>local.net|some.host.com<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nonProxyHosts</span><span class="token punctuation">></span></span>         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>proxy</span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>proxies</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>settings</span><span class="token punctuation">></span></span></code></pre>id：可选，可以配置多个代理节点（proxy）<br>active：true/false，true的话说明该代理配置激活使用<br>protocol：http，代理的协议，这里就是http<br>username：用户名，代理需要账号校验时填写，否则注释掉或者直接删除<br>password：密码，代理需要账号校验时填写，否则注释掉或者直接删除<br>host：代理ip<br>port：代理端口<br>nonProxyHosts：无需经过代理访问的网站，多个的话通过|隔开</li></ol><h2 id="通过Idea设置"><a href="#通过Idea设置" class="headerlink" title="通过Idea设置"></a>通过Idea设置</h2><ol><li>打开 <code>Preferences</code> &gt; <code>Build,Execution,Deployment</code> &gt; <code>Build Tools</code> &gt; <code>Maven</code> &gt; <code>Importing</code> &gt; <code>VM options for importer</code> 填入 <code>-DproxySet=true -DproxyHost=127.0.0.1 -DproxyPort=1081</code> 其中 <code>DproxyHost</code>为你的主机地址 <code>DproxyPort</code>为你的端口号</li><li>打开 <code>Preferences</code> &gt; <code>Build,Execution,Deployment</code> &gt; <code>Build Tools</code> &gt; <code>Maven</code> &gt; <code>Runner</code> &gt; <code>VM Options</code> 填入 <code>-DproxySet=true -DproxyHost=127.0.0.1 -DproxyPort=1081</code> 其中 <code>DproxyHost</code>为你的主机地址 <code>DproxyPort</code>为你的端口号</li></ol><p>这个方法是 <code>For current project</code> 也就是只对当前项目生效，切换项目的话，需要重新配置。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Code </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>CTF常见绕过</title>
       <link href="2020/ctf-chang-jian-rao-guo/"/>
       <url>2020/ctf-chang-jian-rao-guo/</url>
