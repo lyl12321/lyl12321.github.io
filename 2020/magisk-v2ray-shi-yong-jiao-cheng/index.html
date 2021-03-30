@@ -409,79 +409,79 @@
 <p>我们需要下载上方两个文件，下载地址直接放出来：<br><a target="_blank" rel="noopener" href="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat">geoip.dat</a>       <a target="_blank" rel="noopener" href="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat">geosite.dat</a></p>
 <p>下载完成后直接覆盖<code>/data/v2ray/</code>目录里的原文件，然后打开<code>config.json</code>,下面我就直接贴代码了，怎么编辑你们也会的。</p>
 <p>在<code>routing</code>部分下改写部分规则</p>
-<pre><code>"routing": {
-    "domainStrategy": "IPIfNonMatch",
-    "rules": [
-      {
+<pre class=" language-json"><code class="language-json"><span class="token property">"routing"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"domainStrategy"</span><span class="token operator">:</span> <span class="token string">"IPIfNonMatch"</span><span class="token punctuation">,</span>
+    <span class="token property">"rules"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
         //代理dns请求
-        "type": "field",
-        "inboundTag": ["dns-in"],
-        "outboundTag": "dns-out"
-      },
-      {
+        <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"field"</span><span class="token punctuation">,</span>
+        <span class="token property">"inboundTag"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"dns-in"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token property">"outboundTag"</span><span class="token operator">:</span> <span class="token string">"dns-out"</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
         //禁用bt下载
-        "type": "field",
-        "outboundTag": "direct",
-        "protocol": ["bittorrent"]
-      },
-      {
+        <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"field"</span><span class="token punctuation">,</span>
+        <span class="token property">"outboundTag"</span><span class="token operator">:</span> <span class="token string">"direct"</span><span class="token punctuation">,</span>
+        <span class="token property">"protocol"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"bittorrent"</span><span class="token punctuation">]</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
         //屏蔽广告
-        "type": "field",
-        "outboundTag": "block",
-        "domain": [
-          "geosite:category-ads-all"
-        ]
-      },
-      {
+        <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"field"</span><span class="token punctuation">,</span>
+        <span class="token property">"outboundTag"</span><span class="token operator">:</span> <span class="token string">"block"</span><span class="token punctuation">,</span>
+        <span class="token property">"domain"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token string">"geosite:category-ads-all"</span>
+        <span class="token punctuation">]</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
         //代理非大陆地址和speedtest
-        "type": "field",
-        "outboundTag": "proxy",
-        "domain": [
-          "geosite:geolocation-!cn",
-          "geosite:speedtest"
-        ]
-      },
-      {
+        <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"field"</span><span class="token punctuation">,</span>
+        <span class="token property">"outboundTag"</span><span class="token operator">:</span> <span class="token string">"proxy"</span><span class="token punctuation">,</span>
+        <span class="token property">"domain"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token string">"geosite:geolocation-!cn"</span><span class="token punctuation">,</span>
+          <span class="token string">"geosite:speedtest"</span>
+        <span class="token punctuation">]</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
         //直接放行大陆地址
-        "type": "field",
-        "outboundTag": "direct",
-        "domain": [
-          "geosite:cn"
-        ]
-      },
-      {
+        <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"field"</span><span class="token punctuation">,</span>
+        <span class="token property">"outboundTag"</span><span class="token operator">:</span> <span class="token string">"direct"</span><span class="token punctuation">,</span>
+        <span class="token property">"domain"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token string">"geosite:cn"</span>
+        <span class="token punctuation">]</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
         //放行国内dns地址
-        "type": "field",
-        "outboundTag": "direct",
-        "ip": [
-          "223.5.5.5/32",
-          "119.29.29.29/32",
-          "180.76.76.76/32",
-          "114.114.114.114/32"
-        ]
-      },
-      {
+        <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"field"</span><span class="token punctuation">,</span>
+        <span class="token property">"outboundTag"</span><span class="token operator">:</span> <span class="token string">"direct"</span><span class="token punctuation">,</span>
+        <span class="token property">"ip"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token string">"223.5.5.5/32"</span><span class="token punctuation">,</span>
+          <span class="token string">"119.29.29.29/32"</span><span class="token punctuation">,</span>
+          <span class="token string">"180.76.76.76/32"</span><span class="token punctuation">,</span>
+          <span class="token string">"114.114.114.114/32"</span>
+        <span class="token punctuation">]</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
         //代理国内dns地址
-        "type": "field",
-        "outboundTag": "proxy",
-        "ip": [
-          "1.1.1.1/32",
-          "1.0.0.1/32",
-          "8.8.8.8/32",
-          "8.8.4.4/32"
-        ]
-      },
-      {
+        <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"field"</span><span class="token punctuation">,</span>
+        <span class="token property">"outboundTag"</span><span class="token operator">:</span> <span class="token string">"proxy"</span><span class="token punctuation">,</span>
+        <span class="token property">"ip"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token string">"1.1.1.1/32"</span><span class="token punctuation">,</span>
+          <span class="token string">"1.0.0.1/32"</span><span class="token punctuation">,</span>
+          <span class="token string">"8.8.8.8/32"</span><span class="token punctuation">,</span>
+          <span class="token string">"8.8.4.4/32"</span>
+        <span class="token punctuation">]</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
         //放行国内ip和私有地址
-        "type": "field",
-        "outboundTag": "direct",
-        "ip": [
-          "geoip:cn",
-          "geoip:private"
-        ]
-      }
-    ]
-  }
+        <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"field"</span><span class="token punctuation">,</span>
+        <span class="token property">"outboundTag"</span><span class="token operator">:</span> <span class="token string">"direct"</span><span class="token punctuation">,</span>
+        <span class="token property">"ip"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token string">"geoip:cn"</span><span class="token punctuation">,</span>
+          <span class="token string">"geoip:private"</span>
+        <span class="token punctuation">]</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
 </code></pre>
 <p>可以复制到自己的文件中，这样就实现了精准的分流。</p>
 <h2 id="0x03高级"><a href="#0x03高级" class="headerlink" title="0x03高级"></a>0x03高级</h2><p>在这个版块将不再赘述<strong>进阶</strong>中的操作步骤</p>
@@ -495,65 +495,65 @@
 <p>启用透明代理：<br><code>/sbin/.magisk/img/v2ray/scripts/v2ray.tproxy enable</code></p>
 <p>禁用透明代理：<br><code>/sbin/.magisk/img/v2ray/scripts/v2ray.tproxy disable</code></p>
 <h3 id="通过wifi来共享网络给局域网中的其它人-（未测试，请自测）"><a href="#通过wifi来共享网络给局域网中的其它人-（未测试，请自测）" class="headerlink" title="通过wifi来共享网络给局域网中的其它人 （未测试，请自测）"></a>通过wifi来共享网络给局域网中的其它人 （未测试，请自测）</h3><p>打开<code>config.json</code>文件在<code>inbounds</code>中添加</p>
-<pre><code>{
-      //监听socks,端口为1080
-      "protocol": "socks",
-      "listen": "0.0.0.0",
-      "port": 1080,
-      "tag": "socks-in",
-      "settings": {
-        "ip": "127.0.0.1",
-        "udp": true,
-        "auth": "noauth"
-      },
-      "sniffing": {
-        "enabled": true,
-        "destOverride": ["http", "tls"]
-      }
-    },
-    {
-    //监听http,端口为1081
-      "protocol": "http",
-      "listen": "0.0.0.0",
-      "port": 1081,
-      "tag": "http-in",
-      "sniffing": {
-        "enabled": true,
-        "destOverride": ["http", "tls"]
-      }
-    }
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+      //监听socks<span class="token punctuation">,</span>端口为<span class="token number">1080</span>
+      <span class="token property">"protocol"</span><span class="token operator">:</span> <span class="token string">"socks"</span><span class="token punctuation">,</span>
+      <span class="token property">"listen"</span><span class="token operator">:</span> <span class="token string">"0.0.0.0"</span><span class="token punctuation">,</span>
+      <span class="token property">"port"</span><span class="token operator">:</span> <span class="token number">1080</span><span class="token punctuation">,</span>
+      <span class="token property">"tag"</span><span class="token operator">:</span> <span class="token string">"socks-in"</span><span class="token punctuation">,</span>
+      <span class="token property">"settings"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"ip"</span><span class="token operator">:</span> <span class="token string">"127.0.0.1"</span><span class="token punctuation">,</span>
+        <span class="token property">"udp"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        <span class="token property">"auth"</span><span class="token operator">:</span> <span class="token string">"noauth"</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token property">"sniffing"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"enabled"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        <span class="token property">"destOverride"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"http"</span><span class="token punctuation">,</span> <span class="token string">"tls"</span><span class="token punctuation">]</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+    //监听http<span class="token punctuation">,</span>端口为<span class="token number">1081</span>
+      <span class="token property">"protocol"</span><span class="token operator">:</span> <span class="token string">"http"</span><span class="token punctuation">,</span>
+      <span class="token property">"listen"</span><span class="token operator">:</span> <span class="token string">"0.0.0.0"</span><span class="token punctuation">,</span>
+      <span class="token property">"port"</span><span class="token operator">:</span> <span class="token number">1081</span><span class="token punctuation">,</span>
+      <span class="token property">"tag"</span><span class="token operator">:</span> <span class="token string">"http-in"</span><span class="token punctuation">,</span>
+      <span class="token property">"sniffing"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"enabled"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        <span class="token property">"destOverride"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"http"</span><span class="token punctuation">,</span> <span class="token string">"tls"</span><span class="token punctuation">]</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 </code></pre>
 <p>然后在<code>rules</code>中</p>
-<pre><code>    {
+<pre class=" language-json"><code class="language-json">    <span class="token punctuation">{</span>
         //代理dns请求
-        "type": "field",
-        "inboundTag": ["dns-in"],
-        "outboundTag": "dns-out"
-      },
+        <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"field"</span><span class="token punctuation">,</span>
+        <span class="token property">"inboundTag"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"dns-in"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token property">"outboundTag"</span><span class="token operator">:</span> <span class="token string">"dns-out"</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
 </code></pre>
 <p>修改为</p>
-<pre><code>    {
-        "type": "field",
-        "outboundTag": "dns-out",
-        "inboundTag": [
-          "socks-in",
-          "http-in",
-          "dns-in"
-        ],
-        "network": "tcp,udp"
-      }
+<pre class=" language-json"><code class="language-json">    <span class="token punctuation">{</span>
+        <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"field"</span><span class="token punctuation">,</span>
+        <span class="token property">"outboundTag"</span><span class="token operator">:</span> <span class="token string">"dns-out"</span><span class="token punctuation">,</span>
+        <span class="token property">"inboundTag"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token string">"socks-in"</span><span class="token punctuation">,</span>
+          <span class="token string">"http-in"</span><span class="token punctuation">,</span>
+          <span class="token string">"dns-in"</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token property">"network"</span><span class="token operator">:</span> <span class="token string">"tcp,udp"</span>
+      <span class="token punctuation">}</span>
 </code></pre>
 <p>反正我没测试过，如果有问题参考官方文档 <a href="v2ray.com">官方文档</a></p>
 <p>还有其它的玩法，请自行参考官方档。能玩得那么骚的，也不用来看我了。。。。</p>
 <h2 id="0x04踩的坑"><a href="#0x04踩的坑" class="headerlink" title="0x04踩的坑"></a>0x04踩的坑</h2><h3 id="Google服务无法使用，联不上网"><a href="#Google服务无法使用，联不上网" class="headerlink" title="Google服务无法使用，联不上网"></a>Google服务无法使用，联不上网</h3><p>一些是国行的手机，有些国行手机内置了google服务，但使用了这个模块后没法访问，原因是国行手机把google的地址指向了googleapis.cn。这个地址不可用。所以只要强制代理这个地址就好了。</p>
 <p>在config.json的rules中加入</p>
-<pre><code>            {
-                "type": "field",
-                "domain": [
-                    "domain:googleapis.cn"
-                ],
-                "outboundTag": "proxy"
-            }
+<pre class=" language-json"><code class="language-json">            <span class="token punctuation">{</span>
+                <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"field"</span><span class="token punctuation">,</span>
+                <span class="token property">"domain"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                    <span class="token string">"domain:googleapis.cn"</span>
+                <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token property">"outboundTag"</span><span class="token operator">:</span> <span class="token string">"proxy"</span>
+            <span class="token punctuation">}</span>
 </code></pre>
 <p>重启一下就好了</p>
 
