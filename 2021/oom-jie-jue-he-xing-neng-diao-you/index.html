@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Maven设置代理, Code Misc">
+    <meta name="keywords" content="OOM解决和性能调优, Code Misc">
     <meta name="description" content="代码和玩机杂谈">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -27,7 +27,7 @@
 </script>
 
 
-    <title>Maven设置代理 | Code Misc</title>
+    <title>OOM解决和性能调优 | Code Misc</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -216,12 +216,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Maven设置代理</h1>
+                    <h1 class="description center-align post-title">OOM解决和性能调优</h1>
                 </div>
             </div>
         </div>
@@ -337,8 +337,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Code/">
-                                <span class="chip bg-color">Code</span>
+                            <a href="/tags/Tomcat/">
+                                <span class="chip bg-color">Tomcat</span>
                             </a>
                         
                     </div>
@@ -362,7 +362,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-06-20
+                    2021-04-16
                 </div>
                 
 
@@ -383,31 +383,30 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>因为一些原因，Maven的下载速度非常的慢，所以要给Maven加个速。一共有两种方法，个人比较推荐第一种。</p>
-<h2 id="通过settings-xml设置"><a href="#通过settings-xml设置" class="headerlink" title="通过settings.xml设置"></a>通过settings.xml设置</h2><ol>
-<li>编辑/Users/你的用户名/.m2/settings.xml(如果没有这个文件的话，就新建一个)，windows路径：系统盘:/Users/你的用户名/.m2/settings.xml</li>
-<li>添加配置<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>settings</span><span class="token punctuation">></span></span>
- <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>proxies</span><span class="token punctuation">></span></span>
-     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>proxy</span><span class="token punctuation">></span></span> 
-       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span><span class="token punctuation">></span></span>workProxy<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>id</span><span class="token punctuation">></span></span> 
-       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>active</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>active</span><span class="token punctuation">></span></span> 
-       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>protocol</span><span class="token punctuation">></span></span>http<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>protocol</span><span class="token punctuation">></span></span>
-       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>username</span><span class="token punctuation">></span></span>admin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>username</span><span class="token punctuation">></span></span>             
-       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>password</span><span class="token punctuation">></span></span>admin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>password</span><span class="token punctuation">></span></span> 
-       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span><span class="token punctuation">></span></span>172.17.13.12<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">></span></span>
-       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>port</span><span class="token punctuation">></span></span>8088<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>port</span><span class="token punctuation">></span></span>   
-       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nonProxyHosts</span><span class="token punctuation">></span></span>local.net|some.host.com<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nonProxyHosts</span><span class="token punctuation">></span></span>    
-     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>proxy</span><span class="token punctuation">></span></span>
- <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>proxies</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>settings</span><span class="token punctuation">></span></span>
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>新接手一个项目，扎眼一看，源码加各种依赖Jar一起接近一个G，不太妙。还是先把项目跑起来吧。打开项目发现还是 <code>Eclipse</code> 的项目，可我早就是 <code>Idea</code> 党了。一顿操作后终于还是在Idea中跑起来了这个项目，但是项目加载到一半就报出一个错误 <code>java.lang.OutOfMemoryError: PermGen space</code>。一看就知道是OOM了，默认的内存大小竟然还跑不动这项目。</p>
+<h2 id="Tomcat内存调整"><a href="#Tomcat内存调整" class="headerlink" title="Tomcat内存调整"></a>Tomcat内存调整</h2><h3 id="1-在Idea中调整"><a href="#1-在Idea中调整" class="headerlink" title="1.在Idea中调整"></a>1.在Idea中调整</h3><p>在Idea中编辑配置在VM options填入 <code>-server -Xms2048m -Xmx4096m -XX:MaxNewSize=2048m -XX:MaxPermSize=4096m</code><br>解析：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/43158214">https://zhuanlan.zhihu.com/p/43158214</a><br><img src="https://raw.githubusercontent.com/lyl12321/picture/master/uPic/TT34ja.png" alt="TT34ja"></p>
+<h3 id="2-在Tomcat配置文件中调整"><a href="#2-在Tomcat配置文件中调整" class="headerlink" title="2.在Tomcat配置文件中调整"></a>2.在Tomcat配置文件中调整</h3><p>修改 <code>Tomcat</code> 的内存配置，打开 <code>$TOMCAT_HOME/bin/catalina.sh</code> 文件（ <code>Windows</code> 系统是 <code>catalina.bat</code> 文件）<br><code>Linux</code> 在 <code>cygwin=false</code> 前加上 <code>JAVA_OPTS="-server -Xms2048m -Xmx4096m -XX:MaxNewSize=2048m -XX:MaxPermSize=4096m"</code>,<code>Windows</code> 在第一行加。</p>
+<h2 id="Tomcat调优"><a href="#Tomcat调优" class="headerlink" title="Tomcat调优"></a>Tomcat调优</h2><p>项目是跑起来了，既然都调整内存了，那就干脆把 <code>Tomcat</code> 的调优参数一块看一下吧。</p>
+<h3 id="JVM调整"><a href="#JVM调整" class="headerlink" title="JVM调整"></a>JVM调整</h3><p><code>-server</code> 参数：表示以服务模式启动，启动速度会稍微慢一点，但性能会高很多。不加这个参数，默认是以客户端模式启动。<br><code>java.awt.headless=true</code> 参数：与图形操作有关，适用于linux系统。如生成验证码，含义是当前使用的是没有安装图安装图形界面的服务器，应用中如果获取系统显示有关参数会抛异常。<br><code>-XX:PermSize</code> 设置永久代初始值，默认是物理内存的1/64。java1.8以后不起作用了，改成了元空间，对应参数 <code>-XX:MetaspaceSize</code><br><code>-XX:MetaspaceSize</code>，初始空间大小，达到该值就会触发垃圾收集进行类型卸载，同时GC会对该值进行调整：如果释放了大量的空间，就适当降低该值；如果释放了很少的空间，那么在不超过MaxMetaspaceSize时，适当提高该值。<br><code>-XX:MaxMetaspaceSize</code> ，最大空间，默认是没有限制的。<br><code>XX:MaxPermSize</code> 设置最大非堆内存的大小，默认是物理内存的1/4。java1.8以后不起作用了，改成了元空间，对应参数 <code>-XX:MaxMetaspaceSize -Xms</code>、-Xmx：JVM内存设置（堆内存）。<br>ps：这两组最好设置成一样的，避免上下文切换消耗资源。JDK8+永久代已经换成了元空间，PermSize MaxPermSize这两个参数没用了。<br><code>-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/path</code> oom时打印dump文件到指定路径</p>
+<h3 id="server-xml修改"><a href="#server-xml修改" class="headerlink" title="server.xml修改"></a>server.xml修改</h3><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Connector</span>
+<span class="token attr-name">port</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>8080<span class="token punctuation">"</span></span>  
+<span class="token attr-name">protocol</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>org.apache.coyote.http11.Http11NioProtocol<span class="token punctuation">"</span></span> 
+<span class="token attr-name">enableLookups</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span>            
+<span class="token attr-name">maxThreads</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1000<span class="token punctuation">"</span></span>               
+<span class="token attr-name">minSpareThreads</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>100<span class="token punctuation">"</span></span>                            
+<span class="token attr-name">acceptCount</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>5000<span class="token punctuation">"</span></span>               
+<span class="token attr-name">disableUploadTimeout</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span>              
+<span class="token attr-name">connectionTimeout</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>30000<span class="token punctuation">"</span></span>               
+<span class="token attr-name">URIEncoding</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span>                           
+<span class="token attr-name">redirectPort</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>8443<span class="token punctuation">"</span></span>               
+<span class="token attr-name">compression</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>on<span class="token punctuation">"</span></span>              
+<span class="token attr-name">compressionMinSize</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1024<span class="token punctuation">"</span></span> 
+<span class="token attr-name">useSendfile</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span>
+<span class="token attr-name">noCompressionUserAgents</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gozilla, traviata<span class="token punctuation">"</span></span>            
+<span class="token attr-name">compressibleMimeType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/html,text/xml,text/plain,text/css,text/javascript,application/javascript <span class="token punctuation">"</span></span>   <span class="token punctuation">/></span></span>
 </code></pre>
-id：可选，可以配置多个代理节点（proxy）<br>active：true/false，true的话说明该代理配置激活使用<br>protocol：http，代理的协议，这里就是http<br>username：用户名，代理需要账号校验时填写，否则注释掉或者直接删除<br>password：密码，代理需要账号校验时填写，否则注释掉或者直接删除<br>host：代理ip<br>port：代理端口<br>nonProxyHosts：无需经过代理访问的网站，多个的话通过|隔开</li>
-</ol>
-<h2 id="通过Idea设置"><a href="#通过Idea设置" class="headerlink" title="通过Idea设置"></a>通过Idea设置</h2><ol>
-<li>打开 <code>Preferences</code> &gt; <code>Build,Execution,Deployment</code> &gt; <code>Build Tools</code> &gt; <code>Maven</code> &gt; <code>Importing</code> &gt; <code>VM options for importer</code> 填入 <code>-DproxySet=true -DproxyHost=127.0.0.1 -DproxyPort=1081</code> 其中 <code>DproxyHost</code>为你的主机地址 <code>DproxyPort</code>为你的端口号</li>
-<li>打开 <code>Preferences</code> &gt; <code>Build,Execution,Deployment</code> &gt; <code>Build Tools</code> &gt; <code>Maven</code> &gt; <code>Runner</code> &gt; <code>VM Options</code> 填入 <code>-DproxySet=true -DproxyHost=127.0.0.1 -DproxyPort=1081</code> 其中 <code>DproxyHost</code>为你的主机地址 <code>DproxyPort</code>为你的端口号</li>
-</ol>
-<p>这个方法是 <code>For current project</code> 也就是只对当前项目生效，切换项目的话，需要重新配置。</p>
+<p><code>org.apache.coyote.http11.Http11NioProtocol</code>：调整工作模式为Nio<br><code>maxThreads</code>：最大线程数，默认150。增大值避免队列请求过多，导致响应缓慢。<br><code>minSpareThreads</code>：最小空闲线程数。<br><code>acceptCount</code>：当处理请求超过此值时，将后来请求放到队列中等待。<br><code>disableUploadTimeout</code>：禁用上传超时时间<br><code>connectionTimeout</code>：连接超时，单位毫秒，0代表不限制<br><code>URIEncoding</code>：URI地址编码使用UTF-8<br><code>enableLookups</code>：关闭dns解析，提高响应时间<br><code>compression</code>：启用压缩功能<br><code>compressionMinSize</code>：最小压缩大小，单位Byte<br><code>compressibleMimeType</code>：压缩的文件类型</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>遇到问题可以先去官网看看，一般官网都有文档和详细的介绍Tomcat参数官网 <a target="_blank" rel="noopener" href="http://tomcat.apache.org/tomcat-9.0-doc/config/http.html">http://tomcat.apache.org/tomcat-9.0-doc/config/http.html</a></p>
 
                 
             </div>
@@ -434,7 +433,7 @@ id：可选，可以配置多个代理节点（proxy）<br>active：true/false�
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://lyl12321.github.io/2020/maven-she-zhi-dai-li/">https://lyl12321.github.io/2020/maven-she-zhi-dai-li/</a>
+                    <a href="https://lyl12321.github.io/2021/oom-jie-jue-he-xing-neng-diao-you/">https://lyl12321.github.io/2021/oom-jie-jue-he-xing-neng-diao-you/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -472,8 +471,8 @@ id：可选，可以配置多个代理节点（proxy）<br>active：true/false�
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Code/">
-                                    <span class="chip bg-color">Code</span>
+                                <a href="/tags/Tomcat/">
+                                    <span class="chip bg-color">Tomcat</span>
                                 </a>
                             
                         </div>
@@ -911,9 +910,10 @@ id：可选，可以配置多个代理节点（proxy）<br>active：true/false�
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/oom-jie-jue-he-xing-neng-diao-you/">
                     <div class="card-image">
@@ -931,9 +931,9 @@ id：可选，可以配置多个代理节点（proxy）<br>active：true/false�
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-04-16
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-16
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -946,6 +946,7 @@ id：可选，可以配置多个代理节点（proxy）<br>active：true/false�
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -964,13 +965,13 @@ id：可选，可以配置多个代理节点（proxy）<br>active：true/false�
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/ctf-chang-jian-rao-guo/">
+                <a href="/2020/maven-she-zhi-dai-li/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="CTF常见绕过">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Maven设置代理">
                         
-                        <span class="card-title">CTF常见绕过</span>
+                        <span class="card-title">Maven设置代理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -981,14 +982,14 @@ id：可选，可以配置多个代理节点（proxy）<br>active：true/false�
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-20
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/CTF%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                    CTF学习
+                            <a href="/categories/Java/" class="post-category">
+                                    Java
                                 </a>
                             
                             
@@ -998,8 +999,8 @@ id：可选，可以配置多个代理节点（proxy）<br>active：true/false�
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%BD%91%E7%BB%9C%E6%8A%80%E5%B7%A7/">
-                        <span class="chip bg-color">网络技巧</span>
+                    <a href="/tags/Code/">
+                        <span class="chip bg-color">Code</span>
                     </a>
                     
                 </div>
