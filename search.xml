@@ -29,6 +29,33 @@
     
     
     <entry>
+      <title>Mysql中遇到的问题--持续更</title>
+      <link href="2021/mysql-zhong-yu-dao-de-wen-ti-chi-xu-geng/"/>
+      <url>2021/mysql-zhong-yu-dao-de-wen-ti-chi-xu-geng/</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本篇文章只在总结我自己在一些实际项目中遇到的问题</p><h2 id="group-concat-函数排序"><a href="#group-concat-函数排序" class="headerlink" title="group_concat()函数排序"></a>group_concat()函数排序</h2><p>如果是多表查询，并且多个列使用了group_concat函数，其中有列用了排序，那么其他使用了函数的列也要用上排序，否则数据对应就有误。正确处理group_concat(字段名 oder by 字段名 desc或asc</p><h2 id="mysql不同版本特性"><a href="#mysql不同版本特性" class="headerlink" title="mysql不同版本特性"></a>mysql不同版本特性</h2><p>在mysql8.0以下的版本不会有 <code>only_full_group_by</code> 问题，但当版本到了8.0之后，就会出现这个问题。在mysql8.0以上的版本中，对于 group by 的这种聚合操作，如果在select 中的列，没有在group by 中出现，那么这个SQL是不合法的，因为列不在group by的从句中，所以对于设置了这个mode的数据库，在使用group&nbsp;by&nbsp;的时候，就要用MAX()，SUM()，ANT_VALUE()的这种聚合函数，才能完成GROUP&nbsp;BY&nbsp;的聚合操作。怎么解决呢？主要是调整<code>sql_mode</code>。</p><p>sql_mode这个变量，很容易被忽视，默认值是空值，在这种设置下是可以允许一些非法操作的，比如允许一些非法数据的插入。在生产环境必须将这个值设置为严格模式，所以开发、测试环境的数据库也必须要设置，这样在开发测试阶段就可以发现问题。</p><p><code>sql_mode</code> 常用值如下：&nbsp;<br><code>ONLY_FULL_GROUP_BY</code> ：对于GROUP BY聚合操作，如果在 SELECT 中的列，没有在 GROUP BY 中出现，那么这个SQL是不合法的，因为列不在GROUP BY从句中。<br><code>NO_AUTO_VALUE_ON_ZERO</code> ：该值影响自增长列的插入。默认设置下，插入0或NULL代表生成下一个自增长值。如果用户&nbsp;希望插入的值为0，而该列又是自增长的，那么这个选项就有用了。<br><code>STRICT_TRANS_TABLES</code> ：在该模式下，如果一个值不能插入到一个事务表中，则中断当前的操作，对非事务表不做限制<br><code>NO_ZERO_IN_DATE</code> ：在严格模式下，不允许日期和月份为零<br><code>NO_ZERO_DATE</code> ：设置该值，mysql数据库不允许插入零日期，插入零日期会抛出错误而不是警告。<br><code>ERROR_FOR_DIVISION_BY_ZERO</code> ：在INSERT或UPDATE过程中，如果数据被零除，则产生错误而非警告。如&nbsp;果未给出该模式，那么数据被零除时MySQL返回NULL<br><code>NO_AUTO_CREATE_USER</code> ：禁止GRANT创建密码为空的用户<br><code>NO_ENGINE_SUBSTITUTION</code> ：如果需要的存储引擎被禁用或未编译，那么抛出错误。不设置此值时，用默认的存储引擎替代，并抛出一个异常<br><code>PIPES_AS_CONCAT</code> ：将”||”视为字符串的连接操作符而非或运算符，这和Oracle数据库是一样的，也和字符串的拼接函数Concat相类似<br><code>ANSI_QUOTES</code>：启用ANSI_QUOTES后，不能用双引号来引用字符串，因为它被解释为识别符</p><p>说明介绍完了，但是在8.0中这么设置下依然会报错，原因如下：<br>ERROR 1231 (42000): Variable ‘sql_mode’ can’t be set to the value of ‘NO_AUTO_CREATE_USER’</p><p>8.0以上已经取消了 <code>NO_AUTO_CREATE_USER这个关键字</code> ，删掉sql语句中的这个关键字即可</p><p>最终，<code>/etc/my.cnf</code> 配置文件中&nbsp; 修改&nbsp;<br><code>sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION'</code></p><p>重启mysql服务，大功告成！~</p><p>第二种办法不用修改配置文件，直接使用命令行<br><code>set&nbsp;GLOBAL&nbsp;sql_mode = 'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';</code> 但是这个方法是临时更改，重启mysql后又回复原。</p><p><code>Linux</code> 上的 <code>Mysql</code> 重启后，你在 <code>Mysql</code> 命令行上设置的就不再有效，而是依据你指定的配置文件中的设定，就是 <code>my.cnf</code> 这个文件中设定</p><h2 id="日期和字符相互转换方法"><a href="#日期和字符相互转换方法" class="headerlink" title="日期和字符相互转换方法"></a>日期和字符相互转换方法</h2><p><code>mysql</code> 中用 <code>date_format(date,'%Y-%m-%d')</code> 等于 <code>oracle</code> 中的 <code>to_char()</code><br><code>mysql</code> 中用 <code>str_to_date(date,'%Y-%m-%d')</code> 等于 <code>oracle</code> 中的<code>to_date()</code></p><h2 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h2><p><code>mysql</code> 是直接在SQL语句中写 <code>limit  x, y</code> ,有limit就可以实现分页;而<code>oracle</code> 则是需要用到伪列ROWNUM和嵌套查询</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数据库 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Mysql </tag>
+            
+            <tag> Oracle </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Maven设置代理</title>
       <link href="2020/maven-she-zhi-dai-li/"/>
       <url>2020/maven-she-zhi-dai-li/</url>

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Windows 10 下访问校园网共享服务器, Code Misc">
+    <meta name="keywords" content="Mysql中遇到的问题--持续更, Code Misc">
     <meta name="description" content="代码和玩机杂谈">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -27,7 +27,7 @@
 </script>
 
 
-    <title>Windows 10 下访问校园网共享服务器 | Code Misc</title>
+    <title>Mysql中遇到的问题--持续更 | Code Misc</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -216,12 +216,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Windows 10 下访问校园网共享服务器</h1>
+                    <h1 class="description center-align post-title">Mysql中遇到的问题--持续更</h1>
                 </div>
             </div>
         </div>
@@ -337,8 +337,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E7%B3%BB%E7%BB%9F%E6%95%99%E7%A8%8B/">
-                                <span class="chip bg-color">系统教程</span>
+                            <a href="/tags/Mysql/">
+                                <span class="chip bg-color">Mysql</span>
+                            </a>
+                        
+                            <a href="/tags/Oracle/">
+                                <span class="chip bg-color">Oracle</span>
                             </a>
                         
                     </div>
@@ -349,8 +353,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%A0%A1%E5%9B%AD%E7%94%9F%E6%B4%BB/" class="post-category">
-                                校园生活
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                数据库
                             </a>
                         
                     </div>
@@ -362,7 +366,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-02-02
+                    2021-03-05
                 </div>
                 
 
@@ -383,33 +387,19 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在学校会经常会访问 <code>\\192.168.88.88</code> 这么一个 <code>IP</code> 地址</p>
-<p>它是学校为了解决各终端设备之间的<code>文件共享</code>问题所搭建的内网 <code>SMB</code> 服务器</p>
-<p>经过初步扫描发现学校的 <code>SMB</code> 有三务器进行负载均衡,每台各存储不同的资料内容</p>
-<p><img src="https://raw.githubusercontent.com/cloverkits/hexo_picture_resource/master/picture/VLAN.png"></p>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>由于宿舍宽带接入通过学校的<code>网关</code>我们可以直接在<code>资源管理器</code>中直接访问 <code>SMB</code> 服务器</p>
-<p>我猜想学校使用了 <code>VLAN</code> 技术把宿舍的宽带和内网以某种方式形成一个 <code>LAN</code> 局域网</p>
-<p>然而在实际使用中却发生了问题，已知任何几台电脑都可以正常访问，但是在宿舍却打不开</p>
-<blockquote>
-<h4 id="分析"><a href="#分析" class="headerlink" title="分析:"></a>分析:</h4></blockquote>
-<p>经过测试 <code>SMB</code> 在 <code>Windows 7</code> 系统中能够正常访问，而 <code>Windows 10</code> 或者 <code>macOS Mojave</code> 和 <code>Linux</code> 中均无法打开；而在 <code>macOS</code> 中能够使用命令扫描到内网有 <code>SMB</code> 开放端口和共享目录</p>
-<p>后来通过 <code>Google</code> 发现了问题的关键，原因是学校的 <code>SMB</code> 文件服务器使用的协议版本太老了</p>
-<blockquote>
-<h4 id="解决："><a href="#解决：" class="headerlink" title="解决："></a>解决：</h4></blockquote>
-<p>我们可以通过启用系统中的 <code>SMB</code> 旧版本支持来实现正常访问</p>
-<ol>
-<li>通过 Windows 搜索或者面板找到 <code>启用或关闭 Windows 功能</code></li>
-</ol>
-<p>![](<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/cloverkits/hexo_picture_resource/master/picture/Windows">https://raw.githubusercontent.com/cloverkits/hexo_picture_resource/master/picture/Windows</a> Search.png)</p>
-<ol start="2">
-<li><p>勾选 <code>SMB 1.0/CIFS File Sharing Support</code> 支持, 并按 <code>确定</code>键应用更改<br>![](<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/cloverkits/hexo_picture_resource/master/picture/Enable">https://raw.githubusercontent.com/cloverkits/hexo_picture_resource/master/picture/Enable</a> Windows Feature.png)</p>
-</li>
-<li><p>重启电脑</p>
-</li>
-<li><p>在资源管理器访问 <code>\\192.168.88.88</code> 并输入你的 <code>校园统一门户</code> 账号密码完成登录</p>
-</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/cloverkits/hexo_picture_resource/master/picture/VLAN_ID.PNG"></p>
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本篇文章只在总结我自己在一些实际项目中遇到的问题</p>
+<h2 id="group-concat-函数排序"><a href="#group-concat-函数排序" class="headerlink" title="group_concat()函数排序"></a>group_concat()函数排序</h2><p>如果是多表查询，并且多个列使用了group_concat函数，其中有列用了排序，那么其他使用了函数的列也要用上排序，否则数据对应就有误。正确处理group_concat(字段名 oder by 字段名 desc或asc</p>
+<h2 id="mysql不同版本特性"><a href="#mysql不同版本特性" class="headerlink" title="mysql不同版本特性"></a>mysql不同版本特性</h2><p>在mysql8.0以下的版本不会有 <code>only_full_group_by</code> 问题，但当版本到了8.0之后，就会出现这个问题。在mysql8.0以上的版本中，对于 group by 的这种聚合操作，如果在select 中的列，没有在group by 中出现，那么这个SQL是不合法的，因为列不在group by的从句中，所以对于设置了这个mode的数据库，在使用group&nbsp;by&nbsp;的时候，就要用MAX()，SUM()，ANT_VALUE()的这种聚合函数，才能完成GROUP&nbsp;BY&nbsp;的聚合操作。怎么解决呢？主要是调整<code>sql_mode</code>。</p>
+<p>sql_mode这个变量，很容易被忽视，默认值是空值，在这种设置下是可以允许一些非法操作的，比如允许一些非法数据的插入。在生产环境必须将这个值设置为严格模式，所以开发、测试环境的数据库也必须要设置，这样在开发测试阶段就可以发现问题。</p>
+<p><code>sql_mode</code> 常用值如下：&nbsp;<br><code>ONLY_FULL_GROUP_BY</code> ：对于GROUP BY聚合操作，如果在 SELECT 中的列，没有在 GROUP BY 中出现，那么这个SQL是不合法的，因为列不在GROUP BY从句中。<br><code>NO_AUTO_VALUE_ON_ZERO</code> ：该值影响自增长列的插入。默认设置下，插入0或NULL代表生成下一个自增长值。如果用户&nbsp;希望插入的值为0，而该列又是自增长的，那么这个选项就有用了。<br><code>STRICT_TRANS_TABLES</code> ：在该模式下，如果一个值不能插入到一个事务表中，则中断当前的操作，对非事务表不做限制<br><code>NO_ZERO_IN_DATE</code> ：在严格模式下，不允许日期和月份为零<br><code>NO_ZERO_DATE</code> ：设置该值，mysql数据库不允许插入零日期，插入零日期会抛出错误而不是警告。<br><code>ERROR_FOR_DIVISION_BY_ZERO</code> ：在INSERT或UPDATE过程中，如果数据被零除，则产生错误而非警告。如&nbsp;果未给出该模式，那么数据被零除时MySQL返回NULL<br><code>NO_AUTO_CREATE_USER</code> ：禁止GRANT创建密码为空的用户<br><code>NO_ENGINE_SUBSTITUTION</code> ：如果需要的存储引擎被禁用或未编译，那么抛出错误。不设置此值时，用默认的存储引擎替代，并抛出一个异常<br><code>PIPES_AS_CONCAT</code> ：将”||”视为字符串的连接操作符而非或运算符，这和Oracle数据库是一样的，也和字符串的拼接函数Concat相类似<br><code>ANSI_QUOTES</code>：启用ANSI_QUOTES后，不能用双引号来引用字符串，因为它被解释为识别符</p>
+<p>说明介绍完了，但是在8.0中这么设置下依然会报错，原因如下：<br>ERROR 1231 (42000): Variable ‘sql_mode’ can’t be set to the value of ‘NO_AUTO_CREATE_USER’</p>
+<p>8.0以上已经取消了 <code>NO_AUTO_CREATE_USER这个关键字</code> ，删掉sql语句中的这个关键字即可</p>
+<p>最终，<code>/etc/my.cnf</code> 配置文件中&nbsp; 修改&nbsp;<br><code>sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION'</code></p>
+<p>重启mysql服务，大功告成！~</p>
+<p>第二种办法不用修改配置文件，直接使用命令行<br><code>set&nbsp;GLOBAL&nbsp;sql_mode = 'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';</code> 但是这个方法是临时更改，重启mysql后又回复原。</p>
+<p><code>Linux</code> 上的 <code>Mysql</code> 重启后，你在 <code>Mysql</code> 命令行上设置的就不再有效，而是依据你指定的配置文件中的设定，就是 <code>my.cnf</code> 这个文件中设定</p>
+<h2 id="日期和字符相互转换方法"><a href="#日期和字符相互转换方法" class="headerlink" title="日期和字符相互转换方法"></a>日期和字符相互转换方法</h2><p><code>mysql</code> 中用 <code>date_format(date,'%Y-%m-%d')</code> 等于 <code>oracle</code> 中的 <code>to_char()</code><br><code>mysql</code> 中用 <code>str_to_date(date,'%Y-%m-%d')</code> 等于 <code>oracle</code> 中的<code>to_date()</code></p>
+<h2 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h2><p><code>mysql</code> 是直接在SQL语句中写 <code>limit  x, y</code> ,有limit就可以实现分页;而<code>oracle</code> 则是需要用到伪列ROWNUM和嵌套查询</p>
 
                 
             </div>
@@ -436,7 +426,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://lyl12321.github.io/2019/windows-10-xia-fang-wen-xiao-yuan-wang-gong-xiang-fu-wu-qi/">https://lyl12321.github.io/2019/windows-10-xia-fang-wen-xiao-yuan-wang-gong-xiang-fu-wu-qi/</a>
+                    <a href="https://lyl12321.github.io/2021/mysql-zhong-yu-dao-de-wen-ti-chi-xu-geng/">https://lyl12321.github.io/2021/mysql-zhong-yu-dao-de-wen-ti-chi-xu-geng/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -474,8 +464,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E7%B3%BB%E7%BB%9F%E6%95%99%E7%A8%8B/">
-                                    <span class="chip bg-color">系统教程</span>
+                                <a href="/tags/Mysql/">
+                                    <span class="chip bg-color">Mysql</span>
+                                </a>
+                            
+                                <a href="/tags/Oracle/">
+                                    <span class="chip bg-color">Oracle</span>
                                 </a>
                             
                         </div>
@@ -651,13 +645,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/xxx-jing-xiang-yi-sun-pi-wu-fa-da-kai/">
+                <a href="/2021/oom-jie-jue-he-xing-neng-diao-you/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="xxx镜像已损坏,无法打开">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="OOM解决和性能调优">
                         
-                        <span class="card-title">xxx镜像已损坏,无法打开</span>
+                        <span class="card-title">OOM解决和性能调优</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -668,14 +662,14 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-02-26
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-04-16
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/macOS/" class="post-category">
-                                    macOS
+                            <a href="/categories/Java/" class="post-category">
+                                    Java
                                 </a>
                             
                             
@@ -685,12 +679,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%B3%BB%E7%BB%9F%E6%8A%80%E5%B7%A7/">
-                        <span class="chip bg-color">系统技巧</span>
-                    </a>
-                    
-                    <a href="/tags/Terminal/">
-                        <span class="chip bg-color">Terminal</span>
+                    <a href="/tags/Tomcat/">
+                        <span class="chip bg-color">Tomcat</span>
                     </a>
                     
                 </div>
@@ -704,13 +694,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/macos-kai-qi-trim-zhi-chi/">
+                <a href="/2020/maven-she-zhi-dai-li/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="macOS 开启TRIM支持">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Maven设置代理">
                         
-                        <span class="card-title">macOS 开启TRIM支持</span>
+                        <span class="card-title">Maven设置代理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -721,14 +711,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-02-01
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-20
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/macOS/" class="post-category">
-                                    macOS
+                            <a href="/categories/Java/" class="post-category">
+                                    Java
                                 </a>
                             
                             
@@ -738,12 +728,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%B3%BB%E7%BB%9F%E6%8A%80%E5%B7%A7/">
-                        <span class="chip bg-color">系统技巧</span>
-                    </a>
-                    
-                    <a href="/tags/Terminal/">
-                        <span class="chip bg-color">Terminal</span>
+                    <a href="/tags/Code/">
+                        <span class="chip bg-color">Code</span>
                     </a>
                     
                 </div>

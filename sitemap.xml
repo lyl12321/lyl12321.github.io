@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://lyl12321.github.io/2021/mysql-zhong-yu-dao-de-wen-ti-chi-xu-geng/</loc>
+    
+    <lastmod>2021-06-23</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://lyl12321.github.io/2021/oom-jie-jue-he-xing-neng-diao-you/</loc>
     
     <lastmod>2021-06-23</lastmod>
@@ -143,6 +150,20 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>https://lyl12321.github.io/tags/Mysql/</loc>
+    <lastmod>2021-06-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://lyl12321.github.io/tags/Oracle/</loc>
+    <lastmod>2021-06-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   
   <url>
@@ -175,6 +196,13 @@
   
   <url>
     <loc>https://lyl12321.github.io/categories/%E6%89%8B%E6%9C%BA%E6%8A%80%E5%B7%A7/</loc>
+    <lastmod>2021-06-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://lyl12321.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
     <lastmod>2021-06-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
