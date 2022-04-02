@@ -392,7 +392,7 @@
 <p>所以我们只要移除这个附加属性就能重新打开软件</p>
 <p><img src="https://raw.githubusercontent.com/lyl12321/picture/master/QQ20200226-141201%402x.webp"></p>
 <h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>查阅了一些资料后发现网上很多的教程都是用重新签名的方法来修复，我个人感觉这种方法不是特别的好用，我们可以用 <code>xattr</code> 命令来达到我们的目的。</p>
-<p>打开iTerm2,键入 <code>sudo xattr -d com.apple.quarantine /Applications/xxx</code> xxx为程序名，以.app结尾。然后输入自己的管理员密码。然后再次打开刚刚损坏的程序。可以发现刚刚打不开的程序又能打开了。</p>
+<p>打开iTerm2,键入 <code>sudo xattr -d -r com.apple.quarantine /Applications/xxx</code> xxx为程序名，以.app结尾。然后输入自己的管理员密码。然后再次打开刚刚损坏的程序。可以发现刚刚打不开的程序又能打开了。</p>
 <p><img src="https://raw.githubusercontent.com/lyl12321/picture/master/QQ20200226-144524%402x.webp"></p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://superuser.com/questions/28384/what-should-i-do-about-com-apple-quarantine">https://superuser.com/questions/28384/what-should-i-do-about-com-apple-quarantine</a></p>
 
