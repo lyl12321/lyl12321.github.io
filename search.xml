@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>修改brew安装的mysql配置</title>
+      <link href="2022/xiu-gai-brew-an-zhuang-de-mysql-pei-zhi/"/>
+      <url>2022/xiu-gai-brew-an-zhuang-de-mysql-pei-zhi/</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>作者之前一直是<code>Docker</code>党，不管在什么平台上，都一直使用<code>Docker</code>进行一些容器、环境的搭建。直到我发现<code>Docker</code>在其它操作系统上的性能问题，就同一个sql，在<code>Docker For Mac</code>执行需要7s+，Mac本地<code>Mysql</code>只需要2s左右，<code>Windows Wsl2 Docker</code>大概是2s~3s（Windows平台配置和Mac不一样，没有参考性）。可以不难发现，<code>Docker For Mac</code>在高版本的Mac上使用了全新<code>Hypervisor</code>，但是性能上并没有多少大的提升，特别是IO读写性能上，和原生差别还是非常大的，这里我放一篇文章，大家可以自行阅读专不专业我就不知道了，自己看吧，<a href="https://accesto.com/blog/docker-on-mac-how-to-speed-it-up/">各平台基准测试和选择</a>。<code>Docker For Wsl2</code>的话，作者感觉还是不错的，但IO性能听说也是有点不太行。但<code>Windows</code>上使用<code>Docker</code>还是能用的，平时用来跑几个版本的<code>Mysql</code>、<code>Redis</code>这些开发环境还是不错的，容器也比较好管理。说了这么多，作者目前是Mac做为主力开发系统，所以最后还是向性能妥协了，直接在Mac上装原生的Mysql，其实并没有比<code>Docker</code>复杂。下面是教程。</p><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><code>brew install mysql@5.7</code>  //安装mysql5.7</p><p><code>brew install mysql</code>   //默认会安装最新的Mysql</p><h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>我不太推荐像网上其它人那样启动，其实brew是有service命令可以管理启动的。我放个文章，具体可以自行浏览，<a href="https://gist.github.com/wen-long/f86a4e3ba55ee2ebcd44">brew serivces</a></p><p><code>brew services start mysql@5.7</code> 就可以启动mysql5.7</p><h2 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h2><p>执行<code>mysql --help</code>然后在输出中找到<code>Mysql</code>的配置文件地址。</p><pre><code>Default options are read from the following files in the given order:/etc/my.cnf /etc/mysql/my.cnf /usr/local/etc/my.cnf ~/.my.cnf</code></pre><p>我一般会直接改<code>~/.my.cnf</code>，把自己的SQL_MODE加入到文件中，就可以了。</p><p><code>/usr/local/etc/my.cnf</code>可以修改绑定的IP，如果需要监听所有地址，就把<code>127.0.0.1</code>改成<code>0.0.0.0</code>就好了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Mysql </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Code </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>OOM解决和性能调优</title>
       <link href="2021/oom-jie-jue-he-xing-neng-diao-you/"/>
       <url>2021/oom-jie-jue-he-xing-neng-diao-you/</url>
