@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>记一次TimeMachine(迁移助理)的坑</title>
+      <link href="2023/ji-yi-ci-timemachine-qian-yi-zhu-li-de-keng/"/>
+      <url>2023/ji-yi-ci-timemachine-qian-yi-zhu-li-de-keng/</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这几天折腾了一台新的黑苹果笔记本，想着把原来台式机的数据迁移到新的笔记本上来，方便使用。关于Mac数据迁移，我总结了以下几个方式。</p><h2 id="DiskGenuis-对烤"><a href="#DiskGenuis-对烤" class="headerlink" title="DiskGenuis 对烤"></a>DiskGenuis 对烤</h2><p>Mac换硬盘迁移数据，使用<code>DiskGenuis</code>这是我感觉最方便，也是最稳定的方式。在<code>DiskGenuis</code>的工具菜单里，有一个叫做硬盘复制的功能，打开后直接按扇区进行对烤，会把原来硬盘的信息完整的复制一份。复制后没有任何bug，使用也不会出现任何权限的问题。但是要求新的硬盘的容量必须大于或等于旧的硬盘，不然不可以复制。</p><h2 id="Time-Machine-时间机器"><a href="#Time-Machine-时间机器" class="headerlink" title="Time Machine (时间机器)"></a>Time Machine (时间机器)</h2><p>这是<code>Apple</code>推荐的备份方式，这篇文章的坑就来说说Time Machine带来的问题。</p><ol><li>Mac 版本对<code>Time Machine</code>的备份是有影响的，自<code>Big Sur</code>以后，<code>Time Machine</code>就无法备份系统了，只能备份数据。这意味着你只使用<code>迁移助理</code>来进行恢复，不可以在<code>Recovery HD</code>模式进行恢复了，想恢复数据的话需要先重装系统，然后在引导界面使用<code>迁移助理</code>。Big Sur以前不受影响</li><li><code>Time Machine</code>恢复时对文件的大小会计算错误，恢复的时候提示 <code>没有足够的可用空间来完成该迁移</code>，这里有一个Bug，恢复的时候大小计算错误。</li></ol><p>在这里我着重说一下第二个问题，这是我这次碰到的坑，如果遇到了，你应该排除一些文件才能保证时间机器正常工作。以下是这个问题的解决方法</p><ol><li>OneDrive 或者 DropBox 导致的，使用 OneDrive 的用户可以尝试把 <code>~/Library/Group Containers/UBF8T346G9.OneDriveStandaloneSuite/</code> 加到 Time Machine 的 exclusion 里。这个目录大小是 OneDrive 整个的大小，但是“磁盘上的空间”是保存在本地的文件大小，迁移助理 在恢复的时候会按照整个大小计算，这个 Bug 应该是只有采用了 macOS 提供的 FileProvider API 的新版 OneDrive 会触发，新版 Dropbox 可能也会，Dropbox就关掉同步文件夹吧</li><li>如果你的Mac上存在有 <code>稀疏文件 (sparse file)</code>，他也会导致迁移助理在计算的时候出现错误，我目前已知的，orbStack这个软件在用这个，他会在用户的文件夹下创建一个 8T 的稀疏文件。这个容量看起来比盘都要大，但实际他没有这么大，只是计算的错误。除了上面说的软件，可能还有其它软件也用了这个类型的文件，这都会导致迁移助理计算出不正常的空间，并会告知你没有足够的空间。那么如何找到这种文件呢，一般这种文件都是用户的目录，所以我们可以用<code>Clean My Mac</code>，<code>Lemon清理</code>这种带有空间透镜的软件来查看是哪个文件占用了。</li></ol><h2 id="迁移助理"><a href="#迁移助理" class="headerlink" title="迁移助理"></a>迁移助理</h2><p>新机一般是通过迁移助理来迁移的，这和上面说的时间机器不太一样。如果你看到这里，其实和Time Machine的解决方法差不多，因为迁移助理是没法排除的，所以你应该要在旧机子上手动备份删除 <code>稀疏文件</code>，在删除掉这些文件后再进行迁移，这样就不会有<code>没有足够可用空间</code>的提示。</p><h2 id="后语"><a href="#后语" class="headerlink" title="后语"></a>后语</h2><p>网上根本没啥资料，挺坑的…</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> macOS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> TimeMachine </tag>
+            
+            <tag> 迁移助理 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>修改brew安装的mysql配置</title>
       <link href="2022/xiu-gai-brew-an-zhuang-de-mysql-pei-zhi/"/>
       <url>2022/xiu-gai-brew-an-zhuang-de-mysql-pei-zhi/</url>
